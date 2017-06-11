@@ -41,7 +41,13 @@ class MyEditor extends React.Component {
           handleKeyCommand={this.handleKeyCommand}
           onChange={this.onChange}
           onTab={(e) => {
-            console.log('tab')
+              this.onChange(
+              RichUtils.onTab(
+                e,
+                this.state.editorState,
+                3
+              )
+            );
           }}
         />
         <pre>
