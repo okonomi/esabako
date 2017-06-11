@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class AddressBar extends Component {
@@ -15,10 +16,12 @@ class AddressBar extends Component {
             }
           });
           instance.get('/v1/teams/okonomi/posts/343')
-            .then(function (response) {
+            .then((response) => {
               console.log(response);
+
+              this.props.onLoad(response);
             })
-            .catch(function (error) {
+            .catch((error) => {
               console.log(error);
             });
         }}>Load</button>
@@ -26,5 +29,9 @@ class AddressBar extends Component {
     );
   }
 }
+
+AddressBar.propTypes = {
+  onLoad: PropTypes.func.isRequired,
+};
 
 export default AddressBar;

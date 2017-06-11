@@ -1,13 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import {stateToMarkdown} from 'draft-js-export-markdown';
+import {stateFromMarkdown} from 'draft-js-import-markdown';
 import './MyEditor.css';
 import 'draft-js/dist/Draft.css';
+import AddressBar from './AddressBar';
 
 class MyEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty(), md: ''};
+    this.state = {
+      editorState: EditorState.createEmpty(),
+      md: '',
+    };
     this.onChange = (editorState) => this.setState({editorState});
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
@@ -25,6 +31,14 @@ class MyEditor extends React.Component {
   render() {
     return (
       <div className='MyEditor'>
+        <AddressBar onLoad={(response) => {
+          this.onChange(
+            EditorState.createWithContent(stateFromMarkdown(
+              response.data.body_md
+            ))
+          );
+        }} />
+
         <button onMouseDown={this._onBoldClick.bind(this)}>Bold</button>
         <button onMouseDown={(e) => {
           this.onChange(
