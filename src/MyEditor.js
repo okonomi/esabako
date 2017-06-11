@@ -1,6 +1,8 @@
 import React from 'react';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import {stateToMarkdown} from 'draft-js-export-markdown';
+import './MyEditor.css';
+import 'draft-js/dist/Draft.css';
 
 class MyEditor extends React.Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class MyEditor extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className='MyEditor'>
         <button onMouseDown={this._onBoldClick.bind(this)}>Bold</button>
         <button onMouseDown={(e) => {
           this.onChange(
