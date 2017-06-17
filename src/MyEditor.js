@@ -14,7 +14,8 @@ class MyEditor extends React.Component {
       editorState: EditorState.createEmpty(),
       md: '',
       title: '',
-      post: null,
+      post: {},
+      mode: 'create',
     };
     this.onChange = (editorState) => this.setState({editorState});
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
@@ -48,6 +49,13 @@ class MyEditor extends React.Component {
             e.preventDefault();
           }}>Export</button>
           <button onMouseDown={(e) => {
+            this.setState({mode: 'create'});
+
+            this.setState({post: {}});
+            this.setState({title: ''});
+            this.onChange(EditorState.createEmpty())
+          }}>New</button>
+          <button onMouseDown={(e) => {
             var instance = axios.create({
               baseURL: 'http://localhost:8080',
               // timeout: 3000,
@@ -60,10 +68,10 @@ class MyEditor extends React.Component {
               .then((response) => {
                 console.log(response);
 
+                this.setState({mode: 'edit'});
+
                 this.setState({post: response.data});
-
                 this.setState({title: this.state.post.name});
-
                 this.onChange(
                   EditorState.createWithContent(stateFromMarkdown(
                     this.state.post.body_md
@@ -89,17 +97,36 @@ class MyEditor extends React.Component {
                 'Target-URL': 'https://api.esa.io',
               }
             });
-            instance.patch('/v1/teams/okonomi/posts/344', {
-              post: post
-            })
-              .then((response) => {
-                console.log(response);
 
-                // this.props.onLoad(response);
+            if (this.state.mode === 'create') {
+              instance.post('/v1/teams/okonomi/posts', {
+                post: {
+                  name: this.state.post.name,
+                  body_md: this.state.post.body_md,
+                }
               })
-              .catch((error) => {
-                console.log(error);
-              });
+                .then((response) => {
+                  console.log(response);
+
+                  this.setState({mode: 'edit'});
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }
+            if (this.state.mode === 'edit') {
+              instance.patch('/v1/teams/okonomi/posts/344', {
+                post: post
+              })
+                .then((response) => {
+                  console.log(response);
+
+                  // this.props.onLoad(response);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }
 
             e.preventDefault();
           }}>Save</button>
