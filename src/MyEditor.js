@@ -2,14 +2,19 @@ import React from 'react';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import {stateToMarkdown} from 'draft-js-export-markdown';
 import {stateFromMarkdown} from 'draft-js-import-markdown';
-import axios from 'axios';
 import './MyEditor.css';
 import 'draft-js/dist/Draft.css';
 import Post from './Post';
+import EsaApi from './EsaApi';
 
 class MyEditor extends React.Component {
   constructor(props) {
     super(props);
+
+    this.esa_api = new EsaApi();
+    this.esa_api.token = 'a768efa2acb0757e4621b2902bf4364afa959d77185b7d8fbb1e46a8b66c8ef8';
+    this.esa_api.team = 'okonomi';
+
     this.state = {
       editorState: EditorState.createEmpty(),
       md: '',
@@ -54,15 +59,7 @@ class MyEditor extends React.Component {
             this.onChange(EditorState.createEmpty())
           }}>New</button>
           <button onMouseDown={(e) => {
-            var instance = axios.create({
-              baseURL: 'http://localhost:8080',
-              // timeout: 3000,
-              headers: {
-                'Authorization': 'Bearer a768efa2acb0757e4621b2902bf4364afa959d77185b7d8fbb1e46a8b66c8ef8',
-                'Target-URL': 'https://api.esa.io',
-              },
-            });
-            instance.get('/v1/teams/okonomi/posts/344')
+            this.esa_api.getPost(344)
               .then((response) => {
                 console.log(response);
 
@@ -89,17 +86,8 @@ class MyEditor extends React.Component {
 
             this.setState({post: post});
 
-            var instance = axios.create({
-              baseURL: 'http://localhost:8080',
-              timeout: 1000,
-              headers: {
-                'Authorization': 'Bearer a768efa2acb0757e4621b2902bf4364afa959d77185b7d8fbb1e46a8b66c8ef8',
-                'Target-URL': 'https://api.esa.io',
-              }
-            });
-
             if (this.state.mode === 'create') {
-              instance.post('/v1/teams/okonomi/posts', {
+              this.esa_api.createPost({
                 post: {
                   name: this.state.post.name,
                   body_md: this.state.post.body_md,
@@ -121,7 +109,7 @@ class MyEditor extends React.Component {
                 });
             }
             if (this.state.mode === 'edit') {
-              instance.patch('/v1/teams/okonomi/posts/' + this.state.post.number, {
+              this.esa_api.updatePost(this.state.post.number, {
                 post: post
               })
                 .then((response) => {
