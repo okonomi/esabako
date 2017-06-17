@@ -13,6 +13,7 @@ class MyEditor extends React.Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       md: '',
+      title: '',
       post: null,
     };
     this.onChange = (editorState) => this.setState({editorState});
@@ -60,6 +61,8 @@ class MyEditor extends React.Component {
 
               this.setState({post: response.data});
 
+              this.setState({title: this.state.post.name});
+
               this.onChange(
                 EditorState.createWithContent(stateFromMarkdown(
                   this.state.post.body_md
@@ -73,6 +76,7 @@ class MyEditor extends React.Component {
         <button onMouseDown={(e) => {
           var post = this.state.post;
           post.body_md = stateToMarkdown(this.state.editorState.getCurrentContent());
+          post.name = this.state.title;
 
           this.setState({post: post});
 
@@ -98,6 +102,9 @@ class MyEditor extends React.Component {
 
           e.preventDefault();
         }}>Save</button>
+        <input type="text" value={this.state.title} onChange={(e) => {
+          this.setState({title: e.target.value});
+        }} />
         <Editor
           editorState={this.state.editorState}
           handleKeyCommand={this.handleKeyCommand}
