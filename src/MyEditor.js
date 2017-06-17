@@ -5,7 +5,7 @@ import {stateFromMarkdown} from 'draft-js-import-markdown';
 import axios from 'axios';
 import './MyEditor.css';
 import 'draft-js/dist/Draft.css';
-// import AddressBar from './AddressBar';
+import Post from './Post';
 
 class MyEditor extends React.Component {
   constructor(props) {
@@ -13,8 +13,7 @@ class MyEditor extends React.Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       md: '',
-      title: '',
-      post: {},
+      post: new Post(),
       mode: 'create',
     };
     this.onChange = (editorState) => this.setState({editorState});
@@ -51,8 +50,7 @@ class MyEditor extends React.Component {
           <button onMouseDown={(e) => {
             this.setState({mode: 'create'});
 
-            this.setState({post: {}});
-            this.setState({title: ''});
+            this.setState({post: new Post()});
             this.onChange(EditorState.createEmpty())
           }}>New</button>
           <button onMouseDown={(e) => {
@@ -70,8 +68,11 @@ class MyEditor extends React.Component {
 
                 this.setState({mode: 'edit'});
 
-                this.setState({post: response.data});
-                this.setState({title: this.state.post.name});
+                let post = this.state.post;
+                post.number = response.data.number;
+                post.name = response.data.name;
+                post.body_md = response.data.body_md;
+                this.setState({post: post});
                 this.onChange(
                   EditorState.createWithContent(stateFromMarkdown(
                     this.state.post.body_md
@@ -85,7 +86,6 @@ class MyEditor extends React.Component {
           <button onMouseDown={(e) => {
             var post = this.state.post;
             post.body_md = stateToMarkdown(this.state.editorState.getCurrentContent());
-            post.name = this.state.title;
 
             this.setState({post: post});
 
@@ -108,14 +108,20 @@ class MyEditor extends React.Component {
                 .then((response) => {
                   console.log(response);
 
-                  this.setState({mode: 'edit'});
+                  let post = this.state.post;
+                  post.number = response.data.number;
+
+                  this.setState({
+                    mode: 'edit',
+                    post: post,
+                  });
                 })
                 .catch((error) => {
                   console.log(error);
                 });
             }
             if (this.state.mode === 'edit') {
-              instance.patch('/v1/teams/okonomi/posts/344', {
+              instance.patch('/v1/teams/okonomi/posts/' + this.state.post.number, {
                 post: post
               })
                 .then((response) => {
@@ -132,8 +138,10 @@ class MyEditor extends React.Component {
           }}>Save</button>
         </div>
         <div>
-          <input type="text" value={this.state.title} onChange={(e) => {
-            this.setState({title: e.target.value});
+          <input type="text" value={this.state.post.name} onChange={(e) => {
+            let post = this.state.post;
+            post.name = e.target.value;
+            this.setState({post: post});
           }} />
         </div>
         <Editor
