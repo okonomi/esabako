@@ -2,6 +2,7 @@ import React from 'react';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import {stateToMarkdown} from 'draft-js-export-markdown';
 import {stateFromMarkdown} from 'draft-js-import-markdown';
+import {Button, ButtonToolbar, FormControl} from 'react-bootstrap';
 import './MyEditor.css';
 import 'draft-js/dist/Draft.css';
 import Post from './Post';
@@ -38,27 +39,27 @@ class MyEditor extends React.Component {
   render() {
     return (
       <div className='MyEditor'>
-        <div>
-          <button onMouseDown={this._onBoldClick.bind(this)}>Bold</button>
-          <button onMouseDown={(e) => {
+        <ButtonToolbar>
+          <Button onMouseDown={this._onBoldClick.bind(this)}>Bold</Button>
+          <Button onMouseDown={(e) => {
             this.onChange(
               RichUtils.toggleBlockType(this.state.editorState, 'unordered-list-item')
             );
             e.preventDefault();
-          }}>List</button>
-          <button onMouseDown={(e) => {
+          }}>List</Button>
+          <Button onMouseDown={(e) => {
             this.setState({
               md: stateToMarkdown(this.state.editorState.getCurrentContent())
             });
             e.preventDefault();
-          }}>Export</button>
-          <button onMouseDown={(e) => {
+          }}>Export</Button>
+          <Button onMouseDown={(e) => {
             this.setState({mode: 'create'});
 
             this.setState({post: new Post()});
             this.onChange(EditorState.createEmpty())
-          }}>New</button>
-          <button onMouseDown={(e) => {
+          }}>New</Button>
+          <Button onMouseDown={(e) => {
             this.esa_api.getPost(344)
               .then((response) => {
                 console.log(response);
@@ -79,8 +80,8 @@ class MyEditor extends React.Component {
               .catch((error) => {
                 console.log(error);
               });
-          }}>Load</button>
-          <button onMouseDown={(e) => {
+          }}>Load</Button>
+          <Button onMouseDown={(e) => {
             var post = this.state.post;
             post.body_md = stateToMarkdown(this.state.editorState.getCurrentContent());
 
@@ -123,14 +124,19 @@ class MyEditor extends React.Component {
             }
 
             e.preventDefault();
-          }}>Save</button>
-        </div>
+          }}>Save</Button>
+        </ButtonToolbar>
         <div>
-          <input type="text" value={this.state.post.name} onChange={(e) => {
-            let post = this.state.post;
-            post.name = e.target.value;
-            this.setState({post: post});
-          }} />
+          <FormControl
+            type="text"
+            value={this.state.post.name}
+            placeholder="記事名"
+            onChange={(e) => {
+              let post = this.state.post;
+              post.name = e.target.value;
+              this.setState({post: post});
+            }}
+          />
         </div>
         <Editor
           editorState={this.state.editorState}
