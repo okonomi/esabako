@@ -5,7 +5,7 @@ class EsaApi {
     this.axios = axios.create({
       // timeout: 3000,
       headers: {
-        'Authorization': 'Bearer aae593f446249f3e080566be2f150f8a73e7a627ea0ba71857e59494e30bb9ba',
+        'Authorization': `Bearer ${process.env.REACT_APP_ESAIO_ACCESS_TOKEN}`,
         'Target-URL': 'https://api.esa.io',
       },
     });
