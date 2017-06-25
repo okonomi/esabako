@@ -23,7 +23,7 @@ class EsaApi {
   }
 
   updatePost(number, params) {
-    return this.axios.patch(`/v1/teams/${this.team}/posts/number`, params);
+    return this.axios.patch(`/v1/teams/${this.team}/posts/${number}`, params);
   }
 }
 
