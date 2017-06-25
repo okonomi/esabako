@@ -1,3 +1,5 @@
+// original code: https://github.com/ccoenraets/cors-proxy
+
 var express = require('express'),
     request = require('request'),
     bodyParser = require('body-parser'),
