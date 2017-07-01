@@ -1,5 +1,8 @@
 .MyEditor {
   text-align: left;
+}
 
-  border: 1px solid black;
+.MyEditor-editor {
+  min-height: 200px;
+  padding: 10px;
 }
