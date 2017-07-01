@@ -2,5 +2,15 @@ machine:
   timezone: Asia/Tokyo
   node:
       version: 8.1.2
-  post:
-    - npm install -g npm@5
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
+dependencies:
+  override:
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
+
+test:
+  override:
+    - yarn test
