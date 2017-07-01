@@ -48,6 +48,27 @@ class MyEditor extends React.Component {
             e.preventDefault();
           }}>List</Button>
           <Button onMouseDown={(e) => {
+            this.onChange(
+              RichUtils.onTab(
+                e,
+                this.state.editorState,
+                3
+              )
+            );
+            e.preventDefault();
+          }}>&gt;</Button>
+          <Button onMouseDown={(e) => {
+            e.shiftKey = true;
+            this.onChange(
+              RichUtils.onTab(
+                e,
+                this.state.editorState,
+                3
+              )
+            );
+            e.preventDefault();
+          }}>&lt;</Button>
+          <Button onMouseDown={(e) => {
             this.setState({
               md: stateToMarkdown(this.state.editorState.getCurrentContent())
             });
@@ -143,7 +164,7 @@ class MyEditor extends React.Component {
           handleKeyCommand={this.handleKeyCommand}
           onChange={this.onChange}
           onTab={(e) => {
-              this.onChange(
+            this.onChange(
               RichUtils.onTab(
                 e,
                 this.state.editorState,
