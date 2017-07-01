@@ -2,7 +2,7 @@ import React from 'react';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import {stateToMarkdown} from 'draft-js-export-markdown';
 import {stateFromMarkdown} from 'draft-js-import-markdown';
-import {Button, ButtonToolbar, FormControl} from 'react-bootstrap';
+import {Button, ButtonToolbar, ButtonGroup, FormControl} from 'react-bootstrap';
 import './MyEditor.css';
 import 'draft-js/dist/Draft.css';
 import Post from './Post';
@@ -18,7 +18,6 @@ class MyEditor extends React.Component {
 
     this.state = {
       editorState: EditorState.createEmpty(),
-      md: '',
       post: new Post(),
       mode: 'create',
     };
@@ -47,105 +46,103 @@ class MyEditor extends React.Component {
             );
             e.preventDefault();
           }}>List</Button>
-          <Button onMouseDown={(e) => {
-            this.onChange(
-              RichUtils.onTab(
-                e,
-                this.state.editorState,
-                3
-              )
-            );
-            e.preventDefault();
-          }}>&gt;</Button>
-          <Button onMouseDown={(e) => {
-            e.shiftKey = true;
-            this.onChange(
-              RichUtils.onTab(
-                e,
-                this.state.editorState,
-                3
-              )
-            );
-            e.preventDefault();
-          }}>&lt;</Button>
-          <Button onMouseDown={(e) => {
-            this.setState({
-              md: stateToMarkdown(this.state.editorState.getCurrentContent())
-            });
-            e.preventDefault();
-          }}>Export</Button>
-          <Button onMouseDown={(e) => {
-            this.setState({mode: 'create'});
-
-            this.setState({post: new Post()});
-            this.onChange(EditorState.createEmpty())
-          }}>New</Button>
-          <Button onMouseDown={(e) => {
-            this.esa_api.getPost(344)
-              .then((response) => {
-                console.log(response);
-
-                this.setState({mode: 'edit'});
-
-                let post = this.state.post;
-                post.number = response.data.number;
-                post.name = response.data.name;
-                post.body_md = response.data.body_md;
-                this.setState({post: post});
-                this.onChange(
-                  EditorState.createWithContent(stateFromMarkdown(
-                    this.state.post.body_md
-                  ))
+          <ButtonGroup>
+            <Button onMouseDown={(e) => {
+              e.shiftKey = true;
+              this.onChange(
+                RichUtils.onTab(
+                  e,
+                  this.state.editorState,
+                  3
                 )
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          }}>Load</Button>
-          <Button onMouseDown={(e) => {
-            var post = this.state.post;
-            post.body_md = stateToMarkdown(this.state.editorState.getCurrentContent());
+              );
+              e.preventDefault();
+            }}>&lt;</Button>
+            <Button onMouseDown={(e) => {
+              this.onChange(
+                RichUtils.onTab(
+                  e,
+                  this.state.editorState,
+                  3
+                )
+              );
+              e.preventDefault();
+            }}>&gt;</Button>
+          </ButtonGroup>
+          <ButtonGroup>
+            <Button onMouseDown={(e) => {
+              this.setState({mode: 'create'});
 
-            this.setState({post: post});
-
-            if (this.state.mode === 'create') {
-              this.esa_api.createPost({
-                post: {
-                  name: this.state.post.name,
-                  body_md: this.state.post.body_md,
-                }
-              })
+              this.setState({post: new Post()});
+              this.onChange(EditorState.createEmpty())
+            }}>New</Button>
+            <Button onMouseDown={(e) => {
+              this.esa_api.getPost(344)
                 .then((response) => {
                   console.log(response);
+
+                  this.setState({mode: 'edit'});
 
                   let post = this.state.post;
                   post.number = response.data.number;
+                  post.name = response.data.name;
+                  post.body_md = response.data.body_md;
+                  this.setState({post: post});
+                  this.onChange(
+                    EditorState.createWithContent(stateFromMarkdown(
+                      this.state.post.body_md
+                    ))
+                  )
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }}>Load</Button>
+            <Button onMouseDown={(e) => {
+              var post = this.state.post;
+              post.body_md = stateToMarkdown(this.state.editorState.getCurrentContent());
 
-                  this.setState({
-                    mode: 'edit',
-                    post: post,
+              this.setState({post: post});
+
+              if (this.state.mode === 'create') {
+                this.esa_api.createPost({
+                  post: {
+                    name: this.state.post.name,
+                    body_md: this.state.post.body_md,
+                  }
+                })
+                  .then((response) => {
+                    console.log(response);
+
+                    let post = this.state.post;
+                    post.number = response.data.number;
+
+                    this.setState({
+                      mode: 'edit',
+                      post: post,
+                    });
+                  })
+                  .catch((error) => {
+                    console.log(error);
                   });
+              }
+              if (this.state.mode === 'edit') {
+                this.esa_api.updatePost(this.state.post.number, {
+                  post: post
                 })
-                .catch((error) => {
-                  console.log(error);
-                });
-            }
-            if (this.state.mode === 'edit') {
-              this.esa_api.updatePost(this.state.post.number, {
-                post: post
-              })
-                .then((response) => {
-                  console.log(response);
+                  .then((response) => {
+                    console.log(response);
 
-                  // this.props.onLoad(response);
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            }
+                    // this.props.onLoad(response);
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              }
 
-            e.preventDefault();
-          }}>Save</Button>
+              e.preventDefault();
+            }}>Save</Button>
+          </ButtonGroup>
         </ButtonToolbar>
         <div>
           <FormControl
@@ -173,9 +170,6 @@ class MyEditor extends React.Component {
             );
           }}
         />
-        <pre>
-          {this.state.md}
-        </pre>
       </div>
     );
   }
