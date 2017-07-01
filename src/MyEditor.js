@@ -156,20 +156,22 @@ class MyEditor extends React.Component {
             }}
           />
         </div>
-        <Editor
-          editorState={this.state.editorState}
-          handleKeyCommand={this.handleKeyCommand}
-          onChange={this.onChange}
-          onTab={(e) => {
-            this.onChange(
-              RichUtils.onTab(
-                e,
-                this.state.editorState,
-                3
-              )
-            );
-          }}
-        />
+        <div className="MyEditor-editor">
+          <Editor
+            editorState={this.state.editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange}
+            onTab={(e) => {
+              this.onChange(
+                RichUtils.onTab(
+                  e,
+                  this.state.editorState,
+                  3
+                )
+              );
+            }}
+          />
+        </div>
       </div>
     );
   }
