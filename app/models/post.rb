@@ -1,2 +1,3 @@
-class Post < ApplicationRecord
+class Post
+
 end
