@@ -11,15 +11,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Editor from 'draft-js-plugins-editor'
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
+import { stateFromMarkdown } from 'draft-js-import-markdown'
 import { EditorState } from 'draft-js'
 
 const plugins = [
   createMarkdownShortcutsPlugin()
 ]
 
+const markdown = '# hello'
+
 class DemoEditor extends React.Component {
   state = {
-    editorState: EditorState.createEmpty(),
+    // editorState: EditorState.createEmpty(),
+    editorState: EditorState.createWithContent(stateFromMarkdown(markdown))
   }
 
   onChange = editorState => {
