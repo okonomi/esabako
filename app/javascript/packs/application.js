@@ -7,4 +7,41 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-console.log('Hello World from Webpacker')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Editor from 'draft-js-plugins-editor'
+import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
+import { EditorState } from 'draft-js'
+
+const plugins = [
+  createMarkdownShortcutsPlugin()
+]
+
+class DemoEditor extends React.Component {
+  state = {
+    editorState: EditorState.createEmpty(),
+  }
+
+  onChange = (editorState) => {
+    this.setState({
+      editorState,
+    })
+  }
+
+  render() {
+    return (
+      <Editor
+        editorState={this.state.editorState}
+        onChange={this.onChange}
+        plugins={plugins}
+      />
+    )
+  }
+}
+
+document.addEventListener('turbolinks:load', () => {
+  ReactDOM.render(
+    <DemoEditor/>,
+    document.getElementById('editor')
+  )
+})
