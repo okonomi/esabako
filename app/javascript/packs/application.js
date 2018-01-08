@@ -22,7 +22,7 @@ class DemoEditor extends React.Component {
     editorState: EditorState.createEmpty(),
   }
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     })
