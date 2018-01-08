@@ -18,12 +18,12 @@ const plugins = [
   createMarkdownShortcutsPlugin()
 ]
 
-const markdown = '# hello'
-
 class DemoEditor extends React.Component {
-  state = {
-    // editorState: EditorState.createEmpty(),
-    editorState: EditorState.createWithContent(stateFromMarkdown(markdown))
+  constructor(props) {
+    super(props)
+    this.state = {
+      editorState: EditorState.createWithContent(stateFromMarkdown(props.markdown))
+    }
   }
 
   onChange = editorState => {
@@ -44,8 +44,11 @@ class DemoEditor extends React.Component {
 }
 
 document.addEventListener('turbolinks:load', () => {
-  ReactDOM.render(
-    <DemoEditor/>,
-    document.getElementById('editor')
-  )
+  const elem = document.getElementById('editor')
+  if (elem) {
+    ReactDOM.render(
+      <DemoEditor markdown={elem.textContent} />,
+      elem
+    )
+  }
 })
