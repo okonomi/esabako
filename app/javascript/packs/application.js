@@ -9,55 +9,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Editor from 'draft-js-plugins-editor'
-import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
-import { stateFromMarkdown } from 'draft-js-import-markdown'
-import { EditorState } from 'draft-js'
-import axios from 'axios'
-
-const plugins = [
-  createMarkdownShortcutsPlugin()
-]
-
-class EsaEditor extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      editorState: EditorState.createEmpty()
-    }
-  }
-
-  componentWillMount() {
-    axios.get('/posts/340.json')
-      .then((response) => {
-        console.log(response);
-        this.setState({
-          editorState: EditorState.createWithContent(stateFromMarkdown(response.data.body_md))
-          // editorState: EditorState.createEmpty()
-        })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
-
-  onChange = editorState => {
-    this.setState({
-      editorState,
-    })
-  }
-
-  render() {
-    return <div>
-      <Editor
-        editorState={this.state.editorState}
-        onChange={this.onChange}
-        plugins={plugins}
-      />
-    </div>
-  }
-}
+import EsaEditor from '../src/components/EsaEditor'
 
 document.addEventListener('turbolinks:load', () => {
   const elem = document.querySelector('[rel=esa-editor]')
