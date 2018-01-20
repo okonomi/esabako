@@ -19,7 +19,7 @@ export default class EsaEditor extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('/posts/340.json')
+    axios.get(`/posts/${this.props.postId}.json`)
       .then((response) => {
         console.log(response);
         this.setState({

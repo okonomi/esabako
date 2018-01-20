@@ -14,8 +14,9 @@ import EsaEditor from '../src/components/EsaEditor'
 document.addEventListener('turbolinks:load', () => {
   const elem = document.querySelector('[rel=esa-editor]')
   if (elem) {
+    const postId = elem.getAttribute('post_id')
     ReactDOM.render(
-      <EsaEditor />,
+      <EsaEditor postId={postId} />,
       elem
     )
   }
