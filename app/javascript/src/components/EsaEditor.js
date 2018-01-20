@@ -1,9 +1,9 @@
 import React from 'react'
 import Editor from 'draft-js-plugins-editor'
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
-import { stateFromMarkdown } from 'draft-js-import-markdown'
-import { EditorState } from 'draft-js'
+import { EditorState, ContentState, convertFromHTML } from 'draft-js';
 import axios from 'axios'
+import marked from 'marked'
 
 const plugins = [
   createMarkdownShortcutsPlugin()
@@ -21,10 +21,14 @@ export default class EsaEditor extends React.Component {
   componentWillMount() {
     axios.get(`/posts/${this.props.postId}.json`)
       .then((response) => {
-        console.log(response);
+        const markup = marked(response.data.body_md)
+        const blocksFromHTML = convertFromHTML(markup);
+        const content = ContentState.createFromBlockArray(
+          blocksFromHTML.contentBlocks,
+          blocksFromHTML.entityMap
+        );
         this.setState({
-          editorState: EditorState.createWithContent(stateFromMarkdown(response.data.body_md))
-          // editorState: EditorState.createEmpty()
+          editorState: EditorState.createWithContent(content)
         })
       })
       .catch((error) => {
