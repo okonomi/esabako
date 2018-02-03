@@ -9,6 +9,10 @@ const plugins = [
   createMarkdownShortcutsPlugin()
 ]
 
+marked.setOptions({
+  breaks: true
+})
+
 export default class EsaEditor extends React.Component {
   constructor(props) {
     super(props)
