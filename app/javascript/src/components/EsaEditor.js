@@ -1,9 +1,10 @@
 import React from 'react'
 import Editor from 'draft-js-plugins-editor'
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
-import { EditorState, ContentState, convertFromHTML } from 'draft-js';
+import { EditorState, ContentState, convertFromHTML, convertToRaw } from 'draft-js';
 import axios from 'axios'
 import marked from 'marked'
+import TurndownService from 'turndown'
 
 const plugins = [
   createMarkdownShortcutsPlugin()
@@ -11,6 +12,10 @@ const plugins = [
 
 marked.setOptions({
   breaks: true
+})
+
+const turndownService = new TurndownService({
+  headingStyle: 'atx'
 })
 
 export default class EsaEditor extends React.Component {
@@ -46,8 +51,38 @@ export default class EsaEditor extends React.Component {
     })
   }
 
+  onClickSave = () => {
+    console.log('save')
+
+    const markdown = turndownService.turndown('<h1>Hello world!</h1>')
+    console.log(markdown)
+
+    // stateToMarkdown()
+
+
+
+    // axios.post(`/posts/${this.props.postId}.json`, {
+    //   body: 
+    // })
+    //   .then((response) => {
+    //     const markup = marked(response.data.body_md)
+    //     const blocksFromHTML = convertFromHTML(markup);
+    //     const content = ContentState.createFromBlockArray(
+    //       blocksFromHTML.contentBlocks,
+    //       blocksFromHTML.entityMap
+    //     );
+    //     this.setState({
+    //       editorState: EditorState.createWithContent(content)
+    //     })
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   })
+  }
+
   render() {
     return <div>
+      <button onClick={this.onClickSave}>Save</button>
       <Editor
         editorState={this.state.editorState}
         onChange={this.onChange}
