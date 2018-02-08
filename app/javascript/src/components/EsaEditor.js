@@ -81,13 +81,21 @@ export default class EsaEditor extends React.Component {
   }
 
   render() {
-    return <div>
-      <button onClick={this.onClickSave}>Save</button>
-      <Editor
-        editorState={this.state.editorState}
-        onChange={this.onChange}
-        plugins={plugins}
-      />
-    </div>
+    const raw = convertToRaw(this.state.editorState.getCurrentContent())
+
+    return (
+      <React.Fragment>
+        <button onClick={this.onClickSave}>Save</button>
+        <Editor
+          editorState={this.state.editorState}
+          onChange={this.onChange}
+          plugins={plugins}
+        />
+        <hr />
+        <div>
+          <pre>{JSON.stringify(raw, null, '  ')}</pre>
+        </div>
+      </React.Fragment>
+    )
   }
 }
