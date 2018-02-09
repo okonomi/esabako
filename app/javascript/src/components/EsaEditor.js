@@ -1,6 +1,8 @@
 import React from 'react'
 import Editor from 'draft-js-plugins-editor'
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
+import { stateToMarkdown } from 'draft-js-export-markdown'
+import { stateToHTML } from 'draft-js-export-html'
 import { EditorState, ContentState, convertFromHTML, convertToRaw } from 'draft-js';
 import axios from 'axios'
 import marked from 'marked'
@@ -82,6 +84,8 @@ export default class EsaEditor extends React.Component {
 
   render() {
     const raw = convertToRaw(this.state.editorState.getCurrentContent())
+    const markdown = stateToMarkdown(this.state.editorState.getCurrentContent())
+    const html = stateToHTML(this.state.editorState.getCurrentContent())
 
     return (
       <React.Fragment>
@@ -91,6 +95,14 @@ export default class EsaEditor extends React.Component {
           onChange={this.onChange}
           plugins={plugins}
         />
+        <hr />
+        <div>
+          <pre>{markdown}</pre>
+        </div>
+        <hr />
+        <div>
+          <pre>{html}</pre>
+        </div>
         <hr />
         <div>
           <pre>{JSON.stringify(raw, null, '  ')}</pre>
