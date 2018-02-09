@@ -54,32 +54,19 @@ export default class EsaEditor extends React.Component {
   }
 
   onClickSave = () => {
-    console.log('save')
+    const markdown = stateToMarkdown(this.state.editorState.getCurrentContent())
 
-    const markdown = turndownService.turndown('<h1>Hello world!</h1>')
-    console.log(markdown)
-
-    // stateToMarkdown()
-
-
-
-    // axios.post(`/posts/${this.props.postId}.json`, {
-    //   body: 
-    // })
-    //   .then((response) => {
-    //     const markup = marked(response.data.body_md)
-    //     const blocksFromHTML = convertFromHTML(markup);
-    //     const content = ContentState.createFromBlockArray(
-    //       blocksFromHTML.contentBlocks,
-    //       blocksFromHTML.entityMap
-    //     );
-    //     this.setState({
-    //       editorState: EditorState.createWithContent(content)
-    //     })
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   })
+    axios.patch(`/posts/${this.props.postId}.json`, {
+      post: {
+        body_md: markdown
+      }
+    })
+      .then((response) => {
+        console.log('saved')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   render() {
