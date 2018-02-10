@@ -16,8 +16,14 @@ marked.setOptions({
   breaks: true
 })
 
+const renderer = new marked.Renderer()
+renderer.paragraph = (text) => {
+  console.log(text)
+  return `<p>${text}<br /></p>`
+}
+
 const turndownService = new TurndownService({
-  headingStyle: 'atx'
+  // headingStyle: 'atx'
 })
 
 export default class EsaEditor extends React.Component {
@@ -32,7 +38,10 @@ export default class EsaEditor extends React.Component {
   componentWillMount() {
     axios.get(`/posts/${this.props.postId}.json`)
       .then((response) => {
-        const markup = marked(response.data.body_md)
+        console.log(response.data.body_md)
+
+        const markup = marked(response.data.body_md, { renderer })
+        console.log(markup)
         const blocksFromHTML = convertFromHTML(markup);
         const content = ContentState.createFromBlockArray(
           blocksFromHTML.contentBlocks,
@@ -71,8 +80,9 @@ export default class EsaEditor extends React.Component {
 
   render() {
     const raw = convertToRaw(this.state.editorState.getCurrentContent())
-    const markdown = stateToMarkdown(this.state.editorState.getCurrentContent())
     const html = stateToHTML(this.state.editorState.getCurrentContent())
+    // const markdown = stateToMarkdown(this.state.editorState.getCurrentContent())
+    const markdown = turndownService.turndown(html)
 
     return (
       <React.Fragment>
