@@ -10,6 +10,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import EsaEditor from '../src/components/EsaEditor'
+import 'github-markdown-css/github-markdown.css'
 
 document.addEventListener('turbolinks:load', () => {
   const elem = document.querySelector('[rel=esa-editor]')
