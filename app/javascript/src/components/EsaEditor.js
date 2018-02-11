@@ -23,7 +23,8 @@ renderer.paragraph = (text) => {
 }
 
 const turndownService = new TurndownService({
-  // headingStyle: 'atx'
+  headingStyle: 'atx',
+  bulletListMarker: '-'
 })
 
 export default class EsaEditor extends React.Component {
