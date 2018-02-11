@@ -9,7 +9,7 @@ class Post
 
   def update(params)
     client = Esa::Client.new(current_team: 'okonomi')
-    client.update_post(number, body_md: params[:body_md])
+    client.update_post(number, name: params[:name], body_md: params[:body_md])
   end
 
   def persisted?

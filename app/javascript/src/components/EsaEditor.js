@@ -31,6 +31,7 @@ export default class EsaEditor extends React.Component {
     super(props)
 
     this.state = {
+      title: '',
       editorState: EditorState.createEmpty()
     }
   }
@@ -48,12 +49,19 @@ export default class EsaEditor extends React.Component {
           blocksFromHTML.entityMap
         );
         this.setState({
+          title: response.data.name,
           editorState: EditorState.createWithContent(content)
         })
       })
       .catch((error) => {
         console.log(error);
       })
+  }
+
+  onTitleChange = (e) => {
+    this.setState({
+      title: e.target.value
+    })
   }
 
   onChange = editorState => {
@@ -67,6 +75,7 @@ export default class EsaEditor extends React.Component {
 
     axios.patch(`/posts/${this.props.postId}.json`, {
       post: {
+        name: this.state.title,
         body_md: markdown
       }
     })
@@ -87,6 +96,9 @@ export default class EsaEditor extends React.Component {
     return (
       <React.Fragment>
         <button onClick={this.onClickSave}>Save</button>
+        <div>
+          <input type="text" value={this.state.title} onChange={this.onTitleChange} />
+        </div>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}
