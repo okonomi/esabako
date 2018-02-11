@@ -7,4 +7,17 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-console.log('Hello World from Webpacker')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import EsaEditor from '../src/components/EsaEditor'
+
+document.addEventListener('turbolinks:load', () => {
+  const elem = document.querySelector('[rel=esa-editor]')
+  if (elem) {
+    const postId = elem.getAttribute('post_id')
+    ReactDOM.render(
+      <EsaEditor postId={postId} />,
+      elem
+    )
+  }
+})
