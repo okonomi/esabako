@@ -1,31 +1,13 @@
 import React from 'react'
 import Editor from 'draft-js-plugins-editor'
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
-import { stateToMarkdown } from 'draft-js-export-markdown'
-import { stateToHTML } from 'draft-js-export-html'
-import { EditorState, ContentState, convertFromHTML, convertToRaw } from 'draft-js';
+import { EditorState, convertToRaw } from 'draft-js';
 import axios from 'axios'
-import marked from 'marked'
-import TurndownService from 'turndown'
+import EditorUtils from './EditorUtils'
 
 const plugins = [
   createMarkdownShortcutsPlugin()
 ]
-
-marked.setOptions({
-  breaks: true
-})
-
-const renderer = new marked.Renderer()
-renderer.paragraph = (text) => {
-  console.log(text)
-  return `<p>${text}<br /></p>`
-}
-
-const turndownService = new TurndownService({
-  headingStyle: 'atx',
-  bulletListMarker: '-'
-})
 
 export default class EsaEditor extends React.Component {
   constructor(props) {
@@ -40,18 +22,12 @@ export default class EsaEditor extends React.Component {
   componentWillMount() {
     axios.get(`/posts/${this.props.postId}.json`)
       .then((response) => {
-        console.log(response.data.body_md)
-
-        const markup = marked(response.data.body_md, { renderer })
-        console.log(markup)
-        const blocksFromHTML = convertFromHTML(markup);
-        const content = ContentState.createFromBlockArray(
-          blocksFromHTML.contentBlocks,
-          blocksFromHTML.entityMap
-        );
+        const state = EditorUtils.convertHtmlToState(
+          EditorUtils.convertMarkdownToHtml(response.data.body_md)
+        )
         this.setState({
           title: response.data.name,
-          editorState: EditorState.createWithContent(content)
+          editorState: EditorState.createWithContent(state)
         })
       })
       .catch((error) => {
@@ -72,7 +48,9 @@ export default class EsaEditor extends React.Component {
   }
 
   onClickSave = () => {
-    const markdown = stateToMarkdown(this.state.editorState.getCurrentContent())
+    const markdown = convertHtmlToMarkdown(
+      stateToHTML(this.state.editorState.getCurrentContent())
+    )
 
     axios.patch(`/posts/${this.props.postId}.json`, {
       post: {
@@ -89,10 +67,10 @@ export default class EsaEditor extends React.Component {
   }
 
   render() {
-    const raw = convertToRaw(this.state.editorState.getCurrentContent())
-    const html = stateToHTML(this.state.editorState.getCurrentContent())
-    // const markdown = stateToMarkdown(this.state.editorState.getCurrentContent())
-    const markdown = turndownService.turndown(html)
+    const state = this.state.editorState.getCurrentContent()
+    const raw = convertToRaw(state)
+    const html = EditorUtils.convertStateToHtml(state)
+    const markdown = EditorUtils.convertHtmlToMarkdown(html)
 
     return (
       <React.Fragment>

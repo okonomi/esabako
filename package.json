@@ -8,7 +8,6 @@
     "coffeescript": "1.12.7",
     "draft-js": "^0.10.4",
     "draft-js-export-html": "^1.2.0",
-    "draft-js-export-markdown": "^1.2.0",
     "draft-js-markdown-shortcuts-plugin": "^0.3.0",
     "draft-js-plugins-editor": "^2.0.4",
     "marked": "^0.3.12",
