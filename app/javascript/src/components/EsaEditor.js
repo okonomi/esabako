@@ -48,8 +48,8 @@ export default class EsaEditor extends React.Component {
   }
 
   onClickSave = () => {
-    const markdown = convertHtmlToMarkdown(
-      stateToHTML(this.state.editorState.getCurrentContent())
+    const markdown = EditorUtils.convertHtmlToMarkdown(
+      EditorUtils.convertStateToHtml(this.state.editorState.getCurrentContent())
     )
 
     axios.patch(`/posts/${this.props.postId}.json`, {
