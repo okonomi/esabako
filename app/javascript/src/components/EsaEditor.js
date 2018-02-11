@@ -1,7 +1,7 @@
 import React from 'react'
 import Editor from 'draft-js-plugins-editor'
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState, convertToRaw } from 'draft-js'
 import axios from 'axios'
 import EditorUtils from './EditorUtils'
 
@@ -31,7 +31,7 @@ export default class EsaEditor extends React.Component {
         })
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
       })
   }
 
@@ -78,11 +78,13 @@ export default class EsaEditor extends React.Component {
         <div>
           <input type="text" value={this.state.title} onChange={this.onTitleChange} />
         </div>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-        />
+        <div className="markdown-body">
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            plugins={plugins}
+          />
+        </div>
         <hr />
         <div>
           <pre>{markdown}</pre>
