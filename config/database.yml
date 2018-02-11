@@ -82,4 +82,4 @@ production:
   <<: *default
   database: esabako_production
   username: myapp
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  password: <%= ENV['ESABAKO_DATABASE_PASSWORD'] %>
