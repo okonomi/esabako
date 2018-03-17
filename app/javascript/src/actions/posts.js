@@ -6,9 +6,6 @@ export const loadPost = post => ({
 })
 
 export const fetchPost = postId => {
-  console.log('logging')
-  console.log(postId)
-
   return (dispatch, getState) => {
     axios.get(`/posts/${postId}.json`)
       .then(response => {
@@ -37,13 +34,5 @@ export const sendPost = (postId, markdown) => {
       .catch((error) => {
         console.log(error)
       })
-  }
-}
-
-export const savePost = (postId, markdown) => {
-  return {
-    type: 'SAVE_POST',
-    postId,
-    markdown
   }
 }

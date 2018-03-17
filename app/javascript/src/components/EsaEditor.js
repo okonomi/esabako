@@ -15,7 +15,7 @@ export default class EsaEditor extends React.Component {
   }
 
   componentWillMount() {
-    this.props.onLoadPost(this.props.postId)
+    this.props.fetchPost(this.props.postId)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,7 +44,7 @@ export default class EsaEditor extends React.Component {
       EditorUtils.convertStateToHtml(this.state.editorState.getCurrentContent())
     )
 
-    this.props.onSavePost(this.props.post.id, markdown)
+    this.props.sendPost(this.props.post.id, markdown)
   }
 
   render() {
