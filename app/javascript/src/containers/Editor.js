@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Editor from '../components/EsaEditor'
-import { fetchPost, savePost } from './../action_creators'
+import { fetchPost, savePost } from './../actions/posts'
 import EsaEditor from '../components/EsaEditor';
 
 const mapStateToProps = state => {
