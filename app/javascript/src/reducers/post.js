@@ -9,7 +9,7 @@ const initialState = {
   }
 }
 
-export default function posts(state = initialState, action) {
+export default function post(state = initialState, action) {
   switch(action.type) {
     case 'LOAD_POST':
       console.log('load')

@@ -22,7 +22,7 @@ document.addEventListener('turbolinks:load', () => {
   if (elem) {
     const postId = elem.getAttribute('post_id')
 
-    const store = createStore(reducers, { posts: { postId } }, applyMiddleware(thunk))
+    const store = createStore(reducers, { post: { postId } }, applyMiddleware(thunk))
 
     ReactDOM.render(
       <Provider store={store}>
