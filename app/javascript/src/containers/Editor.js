@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import Editor from '../components/EsaEditor'
 import { fetchPost, sendPost } from './../actions/posts'
 import EsaEditor from '../components/EsaEditor';
 
