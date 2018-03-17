@@ -9,15 +9,23 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import EsaEditor from '../src/components/EsaEditor'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import App from './../src/components/App'
+import reducers from './../src/reducers'
+
 import 'github-markdown-css/github-markdown.css'
+
+const store = createStore(reducers)
 
 document.addEventListener('turbolinks:load', () => {
   const elem = document.querySelector('[rel=esa-editor]')
   if (elem) {
     const postId = elem.getAttribute('post_id')
     ReactDOM.render(
-      <EsaEditor postId={postId} />,
+      <Provider store={store}>
+        <App postId={postId} />
+      </Provider>,
       elem
     )
   }
