@@ -2,7 +2,6 @@ import React from 'react'
 import Editor from 'draft-js-plugins-editor'
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
 import { EditorState, convertToRaw } from 'draft-js'
-import axios from 'axios'
 import EditorUtils from './EditorUtils'
 
 const plugins = [
@@ -10,29 +9,23 @@ const plugins = [
 ]
 
 export default class EsaEditor extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      title: '',
-      editorState: EditorState.createEmpty()
-    }
+  state = {
+    title: '',
+    editorState: EditorState.createEmpty()
   }
 
   componentWillMount() {
-    axios.get(`/posts/${this.props.postId}.json`)
-      .then((response) => {
-        const state = EditorUtils.convertHtmlToState(
-          EditorUtils.convertMarkdownToHtml(response.data.body_md)
-        )
-        this.setState({
-          title: response.data.name,
-          editorState: EditorState.createWithContent(state)
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    this.props.fetchPost(this.props.post.id)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const state = EditorUtils.convertHtmlToState(
+      EditorUtils.convertMarkdownToHtml(nextProps.post.body)
+    )
+    this.setState({
+      title: nextProps.post.title,
+      editorState: EditorState.createWithContent(state)
+    })
   }
 
   onTitleChange = (e) => {
@@ -47,23 +40,12 @@ export default class EsaEditor extends React.Component {
     })
   }
 
-  onClickSave = () => {
+  handleSaveClick = () => {
     const markdown = EditorUtils.convertHtmlToMarkdown(
       EditorUtils.convertStateToHtml(this.state.editorState.getCurrentContent())
     )
 
-    axios.patch(`/posts/${this.props.postId}.json`, {
-      post: {
-        name: this.state.title,
-        body_md: markdown
-      }
-    })
-      .then((response) => {
-        console.log('saved')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    this.props.sendPost(this.props.post.id, this.state.title, markdown)
   }
 
   render() {
@@ -74,7 +56,7 @@ export default class EsaEditor extends React.Component {
 
     return (
       <React.Fragment>
-        <button onClick={this.onClickSave}>Save</button>
+        <button onClick={this.handleSaveClick}>Save</button>
         <div>
           <input type="text" value={this.state.title} onChange={this.onTitleChange} />
         </div>
