@@ -1,25 +1,8 @@
-import axios from 'axios'
+import { combineReducers } from 'redux'
+import posts from './posts'
 
-const initialState = {
-  postId: undefined,
-  post: {
-    title: '',
-    body: '',
-  }
-}
+const reducer = combineReducers({
+  posts
+})
 
-export default function reducer(state = initialState, action) {
-  switch(action.type) {
-    case 'LOAD_POST':
-      console.log('load')
-      console.log(action)
-      return {
-        post: action.post
-      }
-
-    case 'SAVE_POST':
-      return state
-    default:
-      return state
-  }
-}
+export default reducer
