@@ -2,7 +2,6 @@ import React from 'react'
 import Editor from 'draft-js-plugins-editor'
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin'
 import { EditorState, convertToRaw } from 'draft-js'
-import axios from 'axios'
 import EditorUtils from './EditorUtils'
 
 const plugins = [
