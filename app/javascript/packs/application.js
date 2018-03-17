@@ -20,7 +20,7 @@ document.addEventListener('turbolinks:load', () => {
   if (elem) {
     const postId = elem.getAttribute('post_id')
 
-    const store = configureStore({ post: { postId } })
+    const store = configureStore({ post: { id: postId } })
 
     ReactDOM.render(
       <Provider store={store}>

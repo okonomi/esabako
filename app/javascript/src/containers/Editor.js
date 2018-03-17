@@ -3,7 +3,7 @@ import { fetchPost, sendPost } from './../actions/posts'
 import EsaEditor from '../components/EsaEditor';
 
 const mapStateToProps = state => {
-  return state.post
+  return state
 }
 
 const mapDispatchToProps = dispatch => {

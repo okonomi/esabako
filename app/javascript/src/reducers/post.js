@@ -1,12 +1,9 @@
 import axios from 'axios'
 
 const initialState = {
-  postId: undefined,
-  post: {
-    id: undefined,
-    title: '',
-    body: '',
-  }
+  id: undefined,
+  title: '',
+  body: '',
 }
 
 export default function post(state = initialState, action) {
@@ -14,7 +11,7 @@ export default function post(state = initialState, action) {
     case 'LOAD_POST':
       return {
         ...state,
-        post: action.post
+        ...action.post,
       }
 
     case 'SAVE_POST':

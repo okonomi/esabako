@@ -15,7 +15,7 @@ export default class EsaEditor extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchPost(this.props.postId)
+    this.props.fetchPost(this.props.post.id)
   }
 
   componentWillReceiveProps(nextProps) {
