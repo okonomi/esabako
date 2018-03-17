@@ -16,21 +16,16 @@ export default class EsaEditor extends React.Component {
   }
 
   componentWillMount() {
-    // axios.get(`/posts/${this.props.postId}.json`)
-    //   .then((response) => {
-    //     const state = EditorUtils.convertHtmlToState(
-    //       EditorUtils.convertMarkdownToHtml(response.data.body_md)
-    //     )
-    //     this.setState({
-    //       title: response.data.name,
-    //       editorState: EditorState.createWithContent(state)
-    //     })
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
-
     this.props.onLoadPost(this.props.postId)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const state = EditorUtils.convertHtmlToState(
+      EditorUtils.convertMarkdownToHtml(nextProps.post.body)
+    )
+    this.setState({
+      editorState: EditorState.createWithContent(state)
+    })
   }
 
   onTitleChange = (e) => {

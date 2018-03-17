@@ -10,6 +10,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onLoadPost: postId => {
+
       dispatch(ActionCreator.loadPost(postId))
     },
     onSavePost: (postId, markdown) => {

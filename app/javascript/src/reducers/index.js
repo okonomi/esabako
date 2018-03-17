@@ -12,8 +12,11 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case Actions.LOAD_POST:
+      console.log('load')
       console.log(action)
-      return state
+      return {
+        post: action.post
+      }
 
     case Actions.SAVE_POST:
       axios.patch(`/posts/${action.postId}.json`, {

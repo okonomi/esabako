@@ -9,7 +9,8 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import App from './../src/containers/App'
 import reducers from './../src/reducers'
@@ -20,7 +21,7 @@ document.addEventListener('turbolinks:load', () => {
   const elem = document.querySelector('[rel=esa-editor]')
   if (elem) {
     const postId = elem.getAttribute('post_id')
-    const store = createStore(reducers, { postId })
+    const store = createStore(reducers, { postId }, applyMiddleware(thunk))
 
     ReactDOM.render(
       <Provider store={store}>
