@@ -101,6 +101,14 @@ class SlateEsaEditor extends React.Component {
     value: Value.fromJSON(initialValue),
   }
 
+  componentWillMount() {
+    this.props.fetchPost(this.props.post.id)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    
+  }
+
   /**
    * Get the block type for a series of auto-markdown shortcut `chars`.
    *
@@ -131,6 +139,10 @@ class SlateEsaEditor extends React.Component {
       default:
         return null
     }
+  }
+
+  componentDidMount() {
+
   }
 
   /**
