@@ -10,13 +10,9 @@ const plugins = [
 ]
 
 export default class EsaEditor extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      title: '',
-      editorState: EditorState.createEmpty()
-    }
+  state = {
+    title: '',
+    editorState: EditorState.createEmpty()
   }
 
   componentWillMount() {
@@ -74,7 +70,7 @@ export default class EsaEditor extends React.Component {
 
     return (
       <React.Fragment>
-        <button onClick={this.onClickSave}>Save</button>
+        <button onClick={this.props.onSave}>Save</button>
         <div>
           <input type="text" value={this.state.title} onChange={this.onTitleChange} />
         </div>

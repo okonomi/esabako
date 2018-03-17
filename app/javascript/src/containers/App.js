@@ -1,20 +1,20 @@
 import { connect } from 'react-redux'
 import App from '../components/App'
-// import ActionCreator from './../action_creators'
+import ActionCreator from './../action_creators'
 
-// const mapStateToProps = state => {
-//   return state
-// }
+const mapStateToProps = state => {
+  return state
+}
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onAddCount: () => {
-//       dispatch(ActionCreator.addCount())
-//     },
-//     onSubCount: () => {
-//       dispatch(ActionCreator.subCount())
-//     }
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    onSavePost: () => {
+      dispatch(ActionCreator.savePost())
+    }
+  }
+}
 
-export default connect()(App)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

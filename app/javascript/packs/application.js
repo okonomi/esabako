@@ -11,7 +11,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import App from './../src/components/App'
+import App from './../src/containers/App'
 import reducers from './../src/reducers'
 
 import 'github-markdown-css/github-markdown.css'
