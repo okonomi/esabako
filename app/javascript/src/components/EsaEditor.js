@@ -23,6 +23,7 @@ export default class EsaEditor extends React.Component {
       EditorUtils.convertMarkdownToHtml(nextProps.post.body)
     )
     this.setState({
+      title: nextProps.post.title,
       editorState: EditorState.createWithContent(state)
     })
   }
@@ -44,7 +45,7 @@ export default class EsaEditor extends React.Component {
       EditorUtils.convertStateToHtml(this.state.editorState.getCurrentContent())
     )
 
-    this.props.sendPost(this.props.post.id, markdown)
+    this.props.sendPost(this.props.post.id, this.state.title, markdown)
   }
 
   render() {

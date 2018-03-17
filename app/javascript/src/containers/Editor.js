@@ -11,8 +11,8 @@ const mapDispatchToProps = dispatch => {
     fetchPost: postId => {
       dispatch(fetchPost(postId))
     },
-    sendPost: (postId, markdown) => {
-      dispatch(sendPost(postId, markdown))
+    sendPost: (postId, title, markdown) => {
+      dispatch(sendPost(postId, title, markdown))
     }
   }
 }

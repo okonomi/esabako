@@ -21,11 +21,12 @@ export const fetchPost = postId => {
   }
 }
 
-export const sendPost = (postId, markdown) => {
+export const sendPost = (postId, title, markdown) => {
   return (dispatch, getState) => {
     axios.patch(`/posts/${postId}.json`, {
       post: {
-        body_md: markdown
+        name: title,
+        body_md: markdown,
       }
     })
       .then((response) => {
