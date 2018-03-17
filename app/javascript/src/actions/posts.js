@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const loadPost = post => ({
+const loadPost = post => ({
   type: 'LOAD_POST',
   post
 })
