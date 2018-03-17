@@ -9,11 +9,9 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import App from './../src/containers/App'
-import reducers from './../src/reducers'
+import configureStore from './../src/store/configureStore'
 
 import 'github-markdown-css/github-markdown.css'
 
@@ -22,7 +20,7 @@ document.addEventListener('turbolinks:load', () => {
   if (elem) {
     const postId = elem.getAttribute('post_id')
 
-    const store = createStore(reducers, { post: { postId } }, applyMiddleware(thunk))
+    const store = configureStore({ post: { postId } })
 
     ReactDOM.render(
       <Provider store={store}>
