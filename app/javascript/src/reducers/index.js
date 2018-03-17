@@ -18,18 +18,6 @@ export default function reducer(state = initialState, action) {
       }
 
     case 'SAVE_POST':
-      axios.patch(`/posts/${action.postId}.json`, {
-        post: {
-          body_md: action.markdown
-        }
-      })
-        .then((response) => {
-          console.log('saved')
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-
       return state
     default:
       return state

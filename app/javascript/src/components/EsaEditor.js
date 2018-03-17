@@ -45,7 +45,7 @@ export default class EsaEditor extends React.Component {
       EditorUtils.convertStateToHtml(this.state.editorState.getCurrentContent())
     )
 
-    this.props.onSave(this.props.postId, markdown)
+    this.props.onSavePost(this.props.post.id, markdown)
   }
 
   render() {

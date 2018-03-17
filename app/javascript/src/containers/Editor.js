@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Editor from '../components/EsaEditor'
-import { fetchPost, savePost } from './../actions/posts'
+import { fetchPost, sendPost } from './../actions/posts'
 import EsaEditor from '../components/EsaEditor';
 
 const mapStateToProps = state => {
@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchPost(postId))
     },
     onSavePost: (postId, markdown) => {
-      dispatch(savePost(postId, markdown))
+      dispatch(sendPost(postId, markdown))
     }
   }
 }
