@@ -8,8 +8,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSavePost: () => {
-      dispatch(ActionCreator.savePost())
+    onSavePost: (postId, markdown) => {
+      dispatch(ActionCreator.savePost(postId, markdown))
     }
   }
 }

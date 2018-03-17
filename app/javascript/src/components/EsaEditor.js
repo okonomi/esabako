@@ -43,23 +43,12 @@ export default class EsaEditor extends React.Component {
     })
   }
 
-  onClickSave = () => {
+  handleSaveClick = () => {
     const markdown = EditorUtils.convertHtmlToMarkdown(
       EditorUtils.convertStateToHtml(this.state.editorState.getCurrentContent())
     )
 
-    axios.patch(`/posts/${this.props.postId}.json`, {
-      post: {
-        name: this.state.title,
-        body_md: markdown
-      }
-    })
-      .then((response) => {
-        console.log('saved')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    this.props.onSave(this.props.postId, markdown)
   }
 
   render() {
@@ -70,7 +59,7 @@ export default class EsaEditor extends React.Component {
 
     return (
       <React.Fragment>
-        <button onClick={this.props.onSave}>Save</button>
+        <button onClick={this.handleSaveClick}>Save</button>
         <div>
           <input type="text" value={this.state.title} onChange={this.onTitleChange} />
         </div>

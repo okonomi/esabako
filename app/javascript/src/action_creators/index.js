@@ -1,9 +1,11 @@
 import Actions from '../actions'
 
 export default {
-  savePost: () => {
+  savePost: (postId, markdown) => {
     return {
-      type: Actions.SAVE_POST
+      type: Actions.SAVE_POST,
+      postId,
+      markdown
     }
   }
 }
