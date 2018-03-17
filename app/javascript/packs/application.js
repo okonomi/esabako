@@ -16,15 +16,15 @@ import reducers from './../src/reducers'
 
 import 'github-markdown-css/github-markdown.css'
 
-const store = createStore(reducers)
-
 document.addEventListener('turbolinks:load', () => {
   const elem = document.querySelector('[rel=esa-editor]')
   if (elem) {
     const postId = elem.getAttribute('post_id')
+    const store = createStore(reducers, { postId })
+
     ReactDOM.render(
       <Provider store={store}>
-        <App postId={postId} />
+        <App />
       </Provider>,
       elem
     )

@@ -1,10 +1,10 @@
 import React from 'react'
-import EsaEditor from './EsaEditor'
+import Editor from './../containers/Editor'
 
 const App = (props) => {
   return (
     <div>
-      <EsaEditor postId={props.postId} onSave={props.onSavePost} />
+      <Editor />
     </div>
   )
 }
