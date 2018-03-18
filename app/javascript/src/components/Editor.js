@@ -3,7 +3,7 @@ import { Value } from 'slate'
 import Html from 'slate-html-serializer'
 import Title from './Editor/Title'
 import SlateEditor from './Editor/SlateEditor'
-import EditorUtils from './Editor/EditorUtils'
+import Serializer from './Editor/Serializer'
 
 const initialValue = {
   "document": {
@@ -85,6 +85,7 @@ const initialValue = {
   }
 }
 
+const serializer = new Serializer()
 
 export default class Editor extends Component {
   state = {
@@ -97,10 +98,9 @@ export default class Editor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const html = EditorUtils.convertMarkdownToHtml(nextProps.post.body)
     this.setState({
       title: nextProps.post.title,
-      // value: serializer.deserialize(html),
+      value: serializer.deserialize(nextProps.post.body),
     })
   }
 
