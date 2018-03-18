@@ -98,6 +98,11 @@ const RULES = [
 const serializer = new Html({ rules: RULES })
 
 export default class Serializer {
+  serialize(value) {
+    const markdown = '# テスト'
+    return markdown
+  }
+
   deserialize(markdown) {
     const html = EditorUtils.convertMarkdownToHtml(markdown)
     return serializer.deserialize(html)

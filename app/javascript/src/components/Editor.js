@@ -30,6 +30,11 @@ export default class Editor extends Component {
     })
   }
 
+  handleSaveClick = () => {
+    const markdown = serializer.serialize(this.state.value)
+    this.props.sendPost(this.props.post.id, this.state.title, markdown)
+  }
+
   handleTitleChange = (event) => {
     this.setState({
       title: event.target.value
@@ -43,6 +48,7 @@ export default class Editor extends Component {
   render() {
     return (
       <div>
+        <button onClick={this.handleSaveClick}>SAVE</button>
         <Title
           title={this.state.title}
           onChange={this.handleTitleChange}
