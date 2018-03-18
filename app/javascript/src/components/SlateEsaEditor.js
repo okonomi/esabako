@@ -2,6 +2,7 @@ import React from 'react'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import Html from 'slate-html-serializer'
+import ContentEditable from 'react-contenteditable'
 import EditorUtils from './EditorUtils'
 
 const initialValue = {
@@ -212,6 +213,7 @@ class SlateEsaEditor extends React.Component {
    */
 
   state = {
+    title: '',
     value: Value.fromJSON(initialValue),
   }
 
@@ -221,7 +223,10 @@ class SlateEsaEditor extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const html = EditorUtils.convertMarkdownToHtml(nextProps.post.body)
-    this.setState({ value: serializer.deserialize(html) })
+    this.setState({
+      title: nextProps.post.title,
+      value: serializer.deserialize(html),
+    })
   }
 
   /**
@@ -260,6 +265,12 @@ class SlateEsaEditor extends React.Component {
 
   }
 
+  handleTitleChange = (event) => {
+    this.setState({
+      title: event.target.value
+    })
+  }
+
   /**
    *
    * Render the example.
@@ -269,15 +280,22 @@ class SlateEsaEditor extends React.Component {
 
   render() {
     return (
-      <div className="markdown-body">
-        <Editor
-          placeholder="Write some markdown..."
-          value={this.state.value}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          renderNode={this.renderNode}
+      <div>
+        <ContentEditable
+          tagName="h1"
+          html={this.state.title}
+          onChange={this.handleTitleChange}
         />
-        <pre>{JSON.stringify(this.state.value, null, '  ')}</pre>
+        <div className="markdown-body">
+          <Editor
+            placeholder="Write some markdown..."
+            value={this.state.value}
+            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            renderNode={this.renderNode}
+          />
+          <pre>{JSON.stringify(this.state.value, null, '  ')}</pre>
+        </div>
       </div>
     )
   }

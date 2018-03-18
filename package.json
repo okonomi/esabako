@@ -15,6 +15,7 @@
     "marked": "^0.3.12",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-contenteditable": "^2.0.7",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
