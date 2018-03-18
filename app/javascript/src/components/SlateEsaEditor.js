@@ -2,7 +2,7 @@ import React from 'react'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import Html from 'slate-html-serializer'
-import ContentEditable from 'react-contenteditable'
+import Title from './Editor/Title'
 import EditorUtils from './EditorUtils'
 
 const initialValue = {
@@ -281,9 +281,8 @@ class SlateEsaEditor extends React.Component {
   render() {
     return (
       <div>
-        <ContentEditable
-          tagName="h1"
-          html={this.state.title}
+        <Title
+          title={this.state.title}
           onChange={this.handleTitleChange}
         />
         <div className="markdown-body">
