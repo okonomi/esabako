@@ -1,22 +1,16 @@
 import React, { Component } from 'react'
 import { Value } from 'slate'
-import Html from 'slate-html-serializer'
+import Plain from 'slate-plain-serializer'
 import Title from './Editor/Title'
 import SlateEditor from './Editor/SlateEditor'
 import Serializer from './Editor/Serializer'
-
-const initialValue = {
-  "document": {
-    "nodes": []
-  }
-}
 
 const serializer = new Serializer()
 
 export default class Editor extends Component {
   state = {
     title: '',
-    value: Value.fromJSON(initialValue),
+    value: Plain.deserialize(''),
   }
 
   componentWillMount() {
