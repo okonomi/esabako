@@ -2,88 +2,6 @@ import React from 'react'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import Html from 'slate-html-serializer'
-import Title from './Editor/Title'
-import EditorUtils from './EditorUtils'
-
-const initialValue = {
-  "document": {
-    "nodes": [
-      {
-        "object": "block",
-        "type": "paragraph",
-        "nodes": [
-          {
-            "object": "text",
-            "leaves": [
-              {
-                "text":
-                  "The editor gives you full control over the logic you can add. For example, it's fairly common to want to add markdown-like shortcuts to editors. So that, when you start a line with \"> \" you get a blockquote that looks like this:"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "block-quote",
-        "nodes": [
-          {
-            "object": "text",
-            "leaves": [
-              {
-                "text": "A wise quote."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "nodes": [
-          {
-            "object": "text",
-            "leaves": [
-              {
-                "text":
-                  "Order when you start a line with \"## \" you get a level-two heading, like this:"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "heading-two",
-        "nodes": [
-          {
-            "object": "text",
-            "leaves": [
-              {
-                "text": "Try it out!"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "nodes": [
-          {
-            "object": "text",
-            "leaves": [
-              {
-                "text":
-                  "Try it out for yourself! Try starting a new line with \">\", \"-\", or \"#\"s."
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
 
 /**
  * Tags to blocks.
@@ -205,30 +123,7 @@ const serializer = new Html({ rules: RULES })
  * @type {Component}
  */
 
-class SlateEsaEditor extends React.Component {
-  /**
-   * Deserialize the raw initial value.
-   *
-   * @type {Object}
-   */
-
-  state = {
-    title: '',
-    value: Value.fromJSON(initialValue),
-  }
-
-  componentWillMount() {
-    this.props.fetchPost(this.props.post.id)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const html = EditorUtils.convertMarkdownToHtml(nextProps.post.body)
-    this.setState({
-      title: nextProps.post.title,
-      value: serializer.deserialize(html),
-    })
-  }
-
+class SlateEditor extends React.Component {
   /**
    * Get the block type for a series of auto-markdown shortcut `chars`.
    *
@@ -261,16 +156,6 @@ class SlateEsaEditor extends React.Component {
     }
   }
 
-  componentDidMount() {
-
-  }
-
-  handleTitleChange = (event) => {
-    this.setState({
-      title: event.target.value
-    })
-  }
-
   /**
    *
    * Render the example.
@@ -280,21 +165,15 @@ class SlateEsaEditor extends React.Component {
 
   render() {
     return (
-      <div>
-        <Title
-          title={this.state.title}
-          onChange={this.handleTitleChange}
+      <div className="markdown-body">
+        <Editor
+          placeholder="Write some markdown..."
+          value={this.props.value}
+          onChange={this.props.onChange}
+          onKeyDown={this.onKeyDown}
+          renderNode={this.renderNode}
         />
-        <div className="markdown-body">
-          <Editor
-            placeholder="Write some markdown..."
-            value={this.state.value}
-            onChange={this.onChange}
-            onKeyDown={this.onKeyDown}
-            renderNode={this.renderNode}
-          />
-          <pre>{JSON.stringify(this.state.value, null, '  ')}</pre>
-        </div>
+        <pre>{JSON.stringify(this.props.value, null, '  ')}</pre>
       </div>
     )
   }
@@ -328,16 +207,6 @@ class SlateEsaEditor extends React.Component {
       case 'list-item':
         return <li {...attributes}>{children}</li>
     }
-  }
-
-  /**
-   * On change.
-   *
-   * @param {Change} change
-   */
-
-  onChange = ({ value }) => {
-    this.setState({ value })
   }
 
   /**
@@ -453,4 +322,4 @@ class SlateEsaEditor extends React.Component {
  * Export.
  */
 
-export default SlateEsaEditor
+export default SlateEditor

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { fetchPost, sendPost } from './../actions/posts'
-import SlateEsaEditor from '../components/SlateEsaEditor';
+import Editor from '../components/Editor';
 
 const mapStateToProps = state => {
   return state
@@ -20,4 +20,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SlateEsaEditor)
+)(Editor)
