@@ -41,7 +41,7 @@ export default class Editor extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <button onClick={this.handleSaveClick}>SAVE</button>
+        <button type="button" className="btn btn-primary" onClick={this.handleSaveClick}>SAVE</button>
         <Title
           title={this.state.title}
           onChange={this.handleTitleChange}

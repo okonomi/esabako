@@ -14,7 +14,7 @@ import App from './../src/containers/App'
 import configureStore from './../src/store/configureStore'
 
 import 'github-markdown-css/github-markdown.css'
-import 'bootstrap/scss/bootstrap'
+import 'bootstrap/dist/css/bootstrap.css'
 
 document.addEventListener('turbolinks:load', () => {
   const elem = document.querySelector('[rel=esa-editor]')
