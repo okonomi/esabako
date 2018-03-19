@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Value } from 'slate'
-import Plain from 'slate-plain-serializer'
 import Title from './Editor/Title'
 import SlateEditor from './Editor/SlateEditor'
 import Serializer from './Editor/Serializer'
@@ -10,7 +9,7 @@ const serializer = new Serializer()
 export default class Editor extends Component {
   state = {
     title: '',
-    value: Plain.deserialize(''),
+    value: serializer.deserialize(''),
   }
 
   componentWillMount() {
@@ -48,10 +47,15 @@ export default class Editor extends Component {
           onChange={this.handleTitleChange}
         />
         <div className="row">
-          <SlateEditor
-            value={this.state.value}
-            onChange={this.handleEditorChange}
-          />
+          <div className="col">
+            <SlateEditor
+              value={this.state.value}
+              onChange={this.handleEditorChange}
+            />
+          </div>
+          <div className="col">
+            <pre>{serializer.serialize(this.state.value)}</pre>
+          </div>
         </div>
       </div>
     )

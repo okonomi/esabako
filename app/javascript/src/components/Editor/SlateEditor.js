@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 
@@ -44,22 +44,15 @@ class SlateEditor extends React.Component {
 
   render() {
     return (
-      <Fragment>
-        <div className="col">
-          <div className="markdown-body">
-            <Editor
-              placeholder="Write some markdown..."
-              value={this.props.value}
-              onChange={this.props.onChange}
-              onKeyDown={this.onKeyDown}
-              renderNode={this.renderNode}
-            />
-          </div>
-        </div>
-        <div className="col">
-          <pre>{JSON.stringify(this.props.value, null, '  ')}</pre>
-        </div>
-      </Fragment>
+      <div className="markdown-body">
+        <Editor
+          placeholder="Write some markdown..."
+          value={this.props.value}
+          onChange={this.props.onChange}
+          onKeyDown={this.onKeyDown}
+          renderNode={this.renderNode}
+        />
+      </div>
     )
   }
 
