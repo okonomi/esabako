@@ -11,13 +11,18 @@
     "draft-js-markdown-shortcuts-plugin": "^0.3.0",
     "draft-js-plugins-editor": "^2.0.4",
     "github-markdown-css": "^2.10.0",
+    "immutable": "^3.8.2",
     "marked": "^0.3.12",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-contenteditable": "^2.0.7",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "slate": "^0.33.0",
+    "slate-html-serializer": "^0.5.6",
+    "slate-react": "^0.12.0",
     "turndown": "^4.0.1"
   },
   "devDependencies": {
