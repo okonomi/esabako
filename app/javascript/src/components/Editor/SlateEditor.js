@@ -52,7 +52,6 @@ class SlateEditor extends React.Component {
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
         />
-        <pre>{JSON.stringify(this.props.value, null, '  ')}</pre>
       </div>
     )
   }

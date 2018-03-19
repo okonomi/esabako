@@ -49,6 +49,8 @@ const RULES = [
           return <p>{children}</p>
         case 'quote':
           return <blockquote>{children}</blockquote>
+        case 'heading-one':
+          return <h1>{children}</h1>
       }
     },
   },
