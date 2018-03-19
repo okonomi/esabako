@@ -1,3 +1,4 @@
+import React from 'react'
 import Html from 'slate-html-serializer'
 import EditorUtils from './EditorUtils'
 
@@ -35,15 +36,41 @@ const RULES = [
         nodes: next(el.childNodes),
       }
     },
+    serialize(obj, children) {
+      if (obj.object != 'block') return
+      switch (obj.type) {
+        case 'code':
+          return (
+            <pre>
+              <code>{children}</code>
+            </pre>
+          )
+        case 'paragraph':
+          return <p>{children}</p>
+        case 'quote':
+          return <blockquote>{children}</blockquote>
+      }
+    },
   },
   {
     deserialize(el, next) {
-      const mark = MARK_TAGS[el.tagName.toLowerCase()]
-      if (!mark) return
+      const type = MARK_TAGS[el.tagName.toLowerCase()]
+      if (!type) return
       return {
         object: 'mark',
-        type: mark,
+        type: type,
         nodes: next(el.childNodes),
+      }
+    },
+    serialize(obj, children) {
+      if (obj.object != 'mark') return
+      switch (obj.type) {
+        case 'bold':
+          return <strong>{children}</strong>
+        case 'italic':
+          return <em>{children}</em>
+        case 'underline':
+          return <u>{children}</u>
       }
     },
   },
@@ -99,8 +126,8 @@ const serializer = new Html({ rules: RULES })
 
 export default class Serializer {
   serialize(value) {
-    const markdown = '# テスト'
-    return markdown
+    const html = serializer.serialize(value)
+    return EditorUtils.convertHtmlToMarkdown(html)
   }
 
   deserialize(markdown) {
