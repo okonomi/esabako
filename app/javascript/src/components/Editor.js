@@ -41,16 +41,18 @@ export default class Editor extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <button onClick={this.handleSaveClick}>SAVE</button>
         <Title
           title={this.state.title}
           onChange={this.handleTitleChange}
         />
-        <SlateEditor
-          value={this.state.value}
-          onChange={this.handleEditorChange}
-        />
+        <div className="row">
+          <SlateEditor
+            value={this.state.value}
+            onChange={this.handleEditorChange}
+          />
+        </div>
       </div>
     )
   }
