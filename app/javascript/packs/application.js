@@ -12,6 +12,8 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './../src/containers/App'
 import configureStore from './../src/store/configureStore'
+import 'bootstrap'
+import 'bootstrap/js/dist/util'
 
 import 'github-markdown-css/github-markdown.css'
 import 'bootstrap/dist/css/bootstrap.css'
