@@ -54,12 +54,12 @@ export default class Editor extends Component {
             />
           </div>
           <div className="col">
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#markdown" role="tab" aria-controls="markdown" aria-selected="true">Markdown</a>
+            <ul className="nav nav-tabs">
+              <li className="nav-item">
+                <a className="nav-link active" data-toggle="tab" href="#markdown" role="tab" aria-controls="markdown" aria-selected="true">Markdown</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Value</a>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Value</a>
               </li>
             </ul>
             <div className="tab-content">
