@@ -146,7 +146,7 @@ export default class Serializer {
     } else {
       switch (node.type) {
         case 'heading-one':
-          return `# ${node.text}\n`
+          return `# ${node.text}\n\n`
         case 'paragraph':
           return `${node.text}\n\n`
         default:
