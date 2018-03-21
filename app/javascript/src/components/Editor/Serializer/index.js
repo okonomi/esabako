@@ -137,7 +137,7 @@ export default class Serializer {
     return serializer.deserialize(html)
   }
 
-  serializeNode(node) {
+  serializeNode = (node) => {
     if (
       node.object == 'document' ||
       (node.object == 'block' && Block.isBlockList(node.nodes))
@@ -159,6 +159,8 @@ export default class Serializer {
           return `###### ${node.text}\n`
         case 'paragraph':
           return `${node.text}\n`
+        case 'list-item':
+          return `- ${node.text}\n`
         default:
           return `${node.text}`
       }
