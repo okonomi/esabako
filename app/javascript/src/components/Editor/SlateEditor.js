@@ -185,16 +185,22 @@ class SlateEditor extends React.Component {
       return
     }
 
-    if (
-      startBlock.type != 'heading-one' &&
-      startBlock.type != 'heading-two' &&
-      startBlock.type != 'heading-three' &&
-      startBlock.type != 'heading-four' &&
-      startBlock.type != 'heading-five' &&
-      startBlock.type != 'heading-six' &&
-      startBlock.type != 'block-quote'
-    ) {
+    if (![
+      'heading-one',
+      'heading-two',
+      'heading-three',
+      'heading-four',
+      'heading-five',
+      'heading-six',
+      'block-quote',
+      'paragraph',
+    ].includes(startBlock.type)) {
       return
+    }
+
+    if (startBlock.type == 'paragraph') {
+      change.insertText("\n")
+      return true
     }
 
     event.preventDefault()
