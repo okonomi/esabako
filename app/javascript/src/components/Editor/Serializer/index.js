@@ -142,15 +142,15 @@ export default class Serializer {
       node.object == 'document' ||
       (node.object == 'block' && Block.isBlockList(node.nodes))
     ) {
-      return node.nodes.map(this.serializeNode).join('')
+      return node.nodes.map(this.serializeNode).join('\n')
     } else {
       switch (node.type) {
         case 'heading-one':
-          return `# ${node.text}\n\n`
+          return `# ${node.text}\n`
         case 'paragraph':
-          return `${node.text}\n\n`
-        default:
           return `${node.text}\n`
+        default:
+          return `${node.text}`
       }
     }
   }
