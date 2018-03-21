@@ -160,7 +160,7 @@ export default class Serializer {
         case 'paragraph':
           return `${node.text}\n`
         case 'list-item':
-          return `- ${node.text}\n`
+          return `- ${node.text}`
         default:
           return `${node.text}`
       }
