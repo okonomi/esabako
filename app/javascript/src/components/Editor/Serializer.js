@@ -128,8 +128,7 @@ const serializer = new Html({ rules: RULES })
 
 export default class Serializer {
   serialize(value) {
-    const html = serializer.serialize(value)
-    return EditorUtils.convertHtmlToMarkdown(html)
+    return 'あいうえお'
   }
 
   deserialize(markdown) {

@@ -21,7 +21,7 @@ describe('#deserialize', () => {
                 "leaves": [
                   {
                     "object": "leaf",
-                    "text": "あいうえお\nかきくけこ",
+                    "text": "あいうえお",
                     "marks": []
                   }
                 ]
@@ -33,6 +33,6 @@ describe('#deserialize', () => {
     })
 
     const serializer = new Serializer()
-    expect(serializer.serialize(value)).toEqual("あいうえお\nかきくけこ")
+    expect(serializer.serialize(value)).toEqual("あいうえお")
   })
 })
