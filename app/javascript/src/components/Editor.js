@@ -59,12 +59,14 @@ export default class Editor extends Component {
                 <a className="nav-link active" data-toggle="tab" href="#markdown" role="tab" aria-controls="markdown" aria-selected="true">Markdown</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Value</a>
+                <a className="nav-link" data-toggle="tab" href="#value" role="tab" aria-controls="value" aria-selected="true">Value</a>
               </li>
             </ul>
             <div className="tab-content">
-              <div className="tab-pane" id="markdown">
+              <div class="tab-pane fade show active" id="markdown" role="tabpanel" aria-labelledby="markdown-tab">
                 <pre>{serializer.serialize(this.state.value)}</pre>
+              </div>
+              <div class="tab-pane fade show" id="value" role="tabpanel" aria-labelledby="value-tab">
                 <pre>{JSON.stringify(this.state.value, null, '  ')}</pre>
               </div>
             </div>
