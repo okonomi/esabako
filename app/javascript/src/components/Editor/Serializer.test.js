@@ -3,9 +3,9 @@ import Plain from 'slate-plain-serializer'
 import { Value } from 'slate'
 
 describe('#serialize', () => {
-  test('line breaks handling', () => {
-    const serializer = new Serializer()
+  const serializer = new Serializer()
 
+  test('paragraph', () => {
     expect(serializer.serialize(Value.fromJSON({
       document: {
         nodes: [
@@ -26,7 +26,9 @@ describe('#serialize', () => {
         ],
       },
     }))).toEqual("あいうえお")
+  })
 
+  test('paragraph in linebreaks', () => {
     expect(serializer.serialize(Value.fromJSON({
       document: {
         nodes: [
