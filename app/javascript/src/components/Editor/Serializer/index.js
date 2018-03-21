@@ -147,6 +147,16 @@ export default class Serializer {
       switch (node.type) {
         case 'heading-one':
           return `# ${node.text}\n`
+        case 'heading-two':
+          return `## ${node.text}\n`
+        case 'heading-three':
+          return `### ${node.text}\n`
+        case 'heading-four':
+          return `#### ${node.text}\n`
+        case 'heading-five':
+          return `##### ${node.text}\n`
+        case 'heading-six':
+          return `###### ${node.text}\n`
         case 'paragraph':
           return `${node.text}\n`
         default:
