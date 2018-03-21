@@ -7,59 +7,45 @@ describe('#serialize', () => {
     const serializer = new Serializer()
 
     expect(serializer.serialize(Value.fromJSON({
-      "object": "value",
-      "document": {
-        "object": "document",
-        "data": {},
-        "nodes": [
+      document: {
+        nodes: [
           {
-            "object": "block",
-            "type": "paragraph",
-            "isVoid": false,
-            "data": {},
-            "nodes": [
+            object: 'block',
+            type: 'paragraph',
+            nodes: [
               {
-                "object": "text",
-                "leaves": [
+                object: 'text',
+                leaves: [
                   {
-                    "object": "leaf",
-                    "text": "あいうえお",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    text: 'あいうえお',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     }))).toEqual("あいうえお")
 
     expect(serializer.serialize(Value.fromJSON({
-      "object": "value",
-      "document": {
-        "object": "document",
-        "data": {},
-        "nodes": [
+      document: {
+        nodes: [
           {
-            "object": "block",
-            "type": "paragraph",
-            "isVoid": false,
-            "data": {},
-            "nodes": [
+            object: 'block',
+            type: 'paragraph',
+            nodes: [
               {
-                "object": "text",
-                "leaves": [
+                object: 'text',
+                leaves: [
                   {
-                    "object": "leaf",
-                    "text": "あいうえお\nかきくけこ",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    text: 'あいうえお\nかきくけこ',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     }))).toEqual("あいうえお\nかきくけこ")
   })
 })
