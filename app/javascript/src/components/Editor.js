@@ -63,10 +63,10 @@ export default class Editor extends Component {
               </li>
             </ul>
             <div className="tab-content">
-              <div class="tab-pane fade show active" id="markdown" role="tabpanel" aria-labelledby="markdown-tab">
+              <div className="tab-pane fade show active" id="markdown" role="tabpanel" aria-labelledby="markdown-tab">
                 <pre>{serializer.serialize(this.state.value)}</pre>
               </div>
-              <div class="tab-pane fade show" id="value" role="tabpanel" aria-labelledby="value-tab">
+              <div className="tab-pane fade show" id="value" role="tabpanel" aria-labelledby="value-tab">
                 <pre>{JSON.stringify(this.state.value, null, '  ')}</pre>
               </div>
             </div>
