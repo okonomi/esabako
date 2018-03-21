@@ -29,6 +29,7 @@
     "turndown": "^4.0.1"
   },
   "devDependencies": {
+    "babel-jest": "^23.0.0-alpha.0",
     "jest": "^22.4.2",
     "webpack-dev-server": "^2.9.7"
   },
