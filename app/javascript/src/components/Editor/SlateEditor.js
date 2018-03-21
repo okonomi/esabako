@@ -95,6 +95,7 @@ class SlateEditor extends React.Component {
    */
 
   onKeyDown = (event, change) => {
+    console.log('onKeyDown: ' + event.key)
     switch (event.key) {
       case ' ':
         return this.onSpace(event, change)
@@ -170,13 +171,19 @@ class SlateEditor extends React.Component {
    */
 
   onEnter = (event, change) => {
+    console.log('onEnter')
     const { value } = change
-    if (value.isExpanded) return
+    if (value.isExpanded) {
+      return
+    }
 
     const { startBlock, startOffset, endOffset } = value
-    if (startOffset == 0 && startBlock.text.length == 0)
+    if (startOffset == 0 && startBlock.text.length == 0) {
       return this.onBackspace(event, change)
-    if (endOffset != startBlock.text.length) return
+    }
+    if (endOffset != startBlock.text.length) {
+      return
+    }
 
     if (
       startBlock.type != 'heading-one' &&
