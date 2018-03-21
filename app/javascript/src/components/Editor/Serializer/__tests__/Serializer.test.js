@@ -1,4 +1,4 @@
-import Serializer from './Serializer'
+import Serializer from './../'
 import Plain from 'slate-plain-serializer'
 import { Value } from 'slate'
 
