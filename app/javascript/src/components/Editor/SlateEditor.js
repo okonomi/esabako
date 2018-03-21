@@ -182,7 +182,12 @@ class SlateEditor extends React.Component {
       return this.onBackspace(event, change)
     }
     if (endOffset != startBlock.text.length) {
-      return
+      if (startBlock.type == 'paragraph') {
+        change.insertText("\n")
+        return true
+      } else {
+        return
+      }
     }
 
     if (![
