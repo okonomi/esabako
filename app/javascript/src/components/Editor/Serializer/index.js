@@ -129,7 +129,7 @@ const serializer = new Html({ rules: RULES })
 
 export default class Serializer {
   serialize(value) {
-    return this.serializeNode(value.document)
+    return this.serializeNode(value.document).replace(/\n+$/, '')
   }
 
   deserialize(markdown) {
@@ -142,9 +142,16 @@ export default class Serializer {
       node.object == 'document' ||
       (node.object == 'block' && Block.isBlockList(node.nodes))
     ) {
-      return node.nodes.map(this.serializeNode).join('\n\n')
+      return node.nodes.map(this.serializeNode).join('')
     } else {
-      return node.text
+      switch (node.type) {
+        case 'heading-one':
+          return `# ${node.text}\n`
+        case 'paragraph':
+          return `${node.text}\n\n`
+        default:
+          return `${node.text}\n`
+      }
     }
   }
 }
