@@ -2,9 +2,11 @@ import Serializer from './Serializer'
 import Plain from 'slate-plain-serializer'
 import { Value } from 'slate'
 
-describe('#deserialize', () => {
+describe('#serialize', () => {
   test('line breaks handling', () => {
-    const value = Value.fromJSON({
+    const serializer = new Serializer()
+
+    expect(serializer.serialize(Value.fromJSON({
       "object": "value",
       "document": {
         "object": "document",
@@ -30,9 +32,34 @@ describe('#deserialize', () => {
           }
         ]
       }
-    })
+    }))).toEqual("あいうえお")
 
-    const serializer = new Serializer()
-    expect(serializer.serialize(value)).toEqual("あいうえお")
+    expect(serializer.serialize(Value.fromJSON({
+      "object": "value",
+      "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "paragraph",
+            "isVoid": false,
+            "data": {},
+            "nodes": [
+              {
+                "object": "text",
+                "leaves": [
+                  {
+                    "object": "leaf",
+                    "text": "あいうえお\nかきくけこ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }))).toEqual("あいうえお\nかきくけこ")
   })
 })

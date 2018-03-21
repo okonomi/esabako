@@ -128,7 +128,9 @@ const serializer = new Html({ rules: RULES })
 
 export default class Serializer {
   serialize(value) {
-    return 'あいうえお'
+    return value.texts.map(text => (
+      text.text
+    )).join()
   }
 
   deserialize(markdown) {
