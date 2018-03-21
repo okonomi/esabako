@@ -50,4 +50,41 @@ describe('#serialize', () => {
       },
     }))).toEqual("あいうえお\nかきくけこ")
   })
+
+  test('some paragraphs with linebreaks', () => {
+    expect(serializer.serialize(Value.fromJSON({
+      document: {
+        nodes: [
+          {
+            object: 'block',
+            type: 'paragraph',
+            nodes: [
+              {
+                object: 'text',
+                leaves: [
+                  {
+                    text: 'あいうえお\nかきくけこ',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            object: 'block',
+            type: 'paragraph',
+            nodes: [
+              {
+                object: 'text',
+                leaves: [
+                  {
+                    text: 'アイウエオ\nカキクケコ',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    }))).toEqual("あいうえお\nかきくけこ\n\nアイウエオ\nカキクケコ")
+  })
 })

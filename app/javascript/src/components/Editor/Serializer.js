@@ -1,4 +1,5 @@
 import React from 'react'
+import { Block } from 'slate'
 import Html from 'slate-html-serializer'
 import EditorUtils from './EditorUtils'
 
@@ -128,13 +129,22 @@ const serializer = new Html({ rules: RULES })
 
 export default class Serializer {
   serialize(value) {
-    return value.texts.map(text => (
-      text.text
-    )).join()
+    return this.serializeNode(value.document)
   }
 
   deserialize(markdown) {
     const html = EditorUtils.convertMarkdownToHtml(markdown)
     return serializer.deserialize(html)
+  }
+
+  serializeNode(node) {
+    if (
+      node.object == 'document' ||
+      (node.object == 'block' && Block.isBlockList(node.nodes))
+    ) {
+      return node.nodes.map(this.serializeNode).join('\n\n')
+    } else {
+      return node.text
+    }
   }
 }
