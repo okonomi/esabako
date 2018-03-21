@@ -142,7 +142,13 @@ export default class Serializer {
       node.object == 'document' ||
       (node.object == 'block' && Block.isBlockList(node.nodes))
     ) {
-      return node.nodes.map(this.serializeNode).join('\n')
+      let result = node.nodes.map(this.serializeNode).join('\n')
+      switch (node.type) {
+        case 'bulleted-list':
+          result += '\n'
+          break
+      }
+      return result
     } else {
       switch (node.type) {
         case 'heading-one':
