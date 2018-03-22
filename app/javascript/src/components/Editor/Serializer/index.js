@@ -1,6 +1,7 @@
 import React from 'react'
+import { Block } from 'slate'
 import Html from 'slate-html-serializer'
-import EditorUtils from './EditorUtils'
+import EditorUtils from './../EditorUtils'
 
 const BLOCK_TAGS = {
   p: 'paragraph',
@@ -128,12 +129,47 @@ const serializer = new Html({ rules: RULES })
 
 export default class Serializer {
   serialize(value) {
-    const html = serializer.serialize(value)
-    return EditorUtils.convertHtmlToMarkdown(html)
+    return this.serializeNode(value.document).replace(/\n+$/, '')
   }
 
   deserialize(markdown) {
     const html = EditorUtils.convertMarkdownToHtml(markdown)
     return serializer.deserialize(html)
+  }
+
+  serializeNode = (node) => {
+    if (
+      node.object == 'document' ||
+      (node.object == 'block' && Block.isBlockList(node.nodes))
+    ) {
+      let result = node.nodes.map(this.serializeNode).join('\n')
+      switch (node.type) {
+        case 'bulleted-list':
+          result += '\n'
+          break
+      }
+      return result
+    } else {
+      switch (node.type) {
+        case 'heading-one':
+          return `# ${node.text}\n`
+        case 'heading-two':
+          return `## ${node.text}\n`
+        case 'heading-three':
+          return `### ${node.text}\n`
+        case 'heading-four':
+          return `#### ${node.text}\n`
+        case 'heading-five':
+          return `##### ${node.text}\n`
+        case 'heading-six':
+          return `###### ${node.text}\n`
+        case 'paragraph':
+          return `${node.text}\n`
+        case 'list-item':
+          return `- ${node.text}`
+        default:
+          return `${node.text}`
+      }
+    }
   }
 }
