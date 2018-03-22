@@ -84,6 +84,8 @@ class SlateEditor extends React.Component {
         return <h6 {...attributes}>{children}</h6>
       case 'list-item':
         return <li {...attributes}>{children}</li>
+      case 'paragraph':
+        return <p {...attributes}>{children}</p>
     }
   }
 
