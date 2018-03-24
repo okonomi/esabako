@@ -1,7 +1,7 @@
 import React from 'react'
 import { Block } from 'slate'
 import Html from 'slate-html-serializer'
-import EditorUtils from './../EditorUtils'
+import EditorUtils from './../../../utils/EditorUtils'
 
 const BLOCK_TAGS = {
   p: 'paragraph',
