@@ -142,6 +142,16 @@ class SlateEditor extends React.Component {
 
   onTab = (event, change) => {
     console.log('onTab')
+
+    const { value } = change
+    const { startBlock, startOffset } = value
+    console.log(startBlock.type)
+    if (startBlock.type != 'list-item') {
+      return
+    }
+
+    change.extendToStartOf(startBlock).wrapBlock('bulleted-list')
+
     event.preventDefault()
     return true
   }
