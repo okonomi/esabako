@@ -8,9 +8,9 @@ marked.setOptions({
 })
 
 const renderer = new marked.Renderer()
-renderer.paragraph = (text) => {
-  return `<p>${text}<br /></p>`
-}
+// renderer.paragraph = (text) => {
+//   return `<p>${text}<br /></p>`
+// }
 
 const turndownService = new TurndownService({
   headingStyle: 'atx',
