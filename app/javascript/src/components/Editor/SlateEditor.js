@@ -101,6 +101,8 @@ class SlateEditor extends React.Component {
     switch (event.key) {
       case ' ':
         return this.onSpace(event, change)
+      case 'Tab':
+        return this.onTab(event, change)
       case 'Backspace':
         return this.onBackspace(event, change)
       case 'Enter':
@@ -135,6 +137,12 @@ class SlateEditor extends React.Component {
     }
 
     change.extendToStartOf(startBlock).delete()
+    return true
+  }
+
+  onTab = (event, change) => {
+    console.log('onTab')
+    event.preventDefault()
     return true
   }
 
