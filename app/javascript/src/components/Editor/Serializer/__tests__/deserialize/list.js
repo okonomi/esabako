@@ -8,12 +8,61 @@ describe('#deserialize', () => {
   const serializer = new Serializer()
 
   test('list', () => {
-    expect(serializer.deserialize("- あいうえお").toJSON()).toEqual((
+    const input = `
+- あいうえお
+`.trim()
+    expect(serializer.deserialize(input).toJSON()).toEqual((
       <value>
         <document>
           <block type="bulleted-list">
             <block type="list-item">
               あいうえお
+            </block>
+          </block>
+        </document>
+      </value>
+    ).toJSON())
+  })
+
+  test('list in some items', () => {
+    const input = `
+- あいうえお
+- かきくけこ
+`.trim()
+
+    expect(serializer.deserialize(input).toJSON()).toEqual((
+      <value>
+        <document>
+          <block type="bulleted-list">
+            <block type="list-item">
+              あいうえお
+            </block>
+            <block type="list-item">
+              かきくけこ
+            </block>
+          </block>
+        </document>
+      </value>
+    ).toJSON())
+  })
+
+  test('nested list', () => {
+    const input = `
+- あいうえお
+  - かきくけこ
+`.trim()
+
+    expect(serializer.deserialize(input).toJSON()).toEqual((
+      <value>
+        <document>
+          <block type="bulleted-list">
+            <block type="list-item">
+              あいうえお
+              <block type="bulleted-list">
+                <block type="list-item">
+                  かきくけこ
+                </block>
+              </block>
             </block>
           </block>
         </document>
