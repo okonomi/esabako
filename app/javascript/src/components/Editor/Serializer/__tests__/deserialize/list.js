@@ -8,7 +8,7 @@ describe('#deserialize', () => {
   const serializer = new Serializer()
 
   test('list', () => {
-    expect(serializer.deserialize("- あいうえお")).toEqual(
+    expect(serializer.deserialize("- あいうえお").toJSON()).toEqual((
       <value>
         <document>
           <block type="bulleted-list">
@@ -18,6 +18,6 @@ describe('#deserialize', () => {
           </block>
         </document>
       </value>
-    )
+    ).toJSON())
   })
 })
