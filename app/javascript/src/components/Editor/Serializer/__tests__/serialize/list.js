@@ -1,78 +1,40 @@
+/** @jsx h */
 import Serializer from './../../'
 import Plain from 'slate-plain-serializer'
 import { Value } from 'slate'
+import h from 'slate-hyperscript'
 
 describe('#serialize', () => {
   const serializer = new Serializer()
 
   test('list', () => {
-    expect(serializer.serialize(Value.fromJSON({
-      document: {
-        nodes: [
-          {
-            object: 'block',
-            type: 'bulleted-list',
-            nodes: [
-              {
-                object: 'block',
-                type: 'list-item',
-                nodes: [
-                  {
-                    object: 'text',
-                    leaves: [
-                      {
-                        text: 'あいうえお',
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    }))).toEqual("- あいうえお")
+    expect(serializer.serialize(
+      <value>
+        <document>
+          <block type="bulleted-list">
+            <block type="list-item">
+              あいうえお
+            </block>
+          </block>
+        </document>
+      </value>
+    )).toEqual("- あいうえお")
   })
+
   test('list with some items', () => {
-    expect(serializer.serialize(Value.fromJSON({
-      document: {
-        nodes: [
-          {
-            object: 'block',
-            type: 'bulleted-list',
-            nodes: [
-              {
-                object: 'block',
-                type: 'list-item',
-                nodes: [
-                  {
-                    object: 'text',
-                    leaves: [
-                      {
-                        text: 'あいうえお',
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                object: 'block',
-                type: 'list-item',
-                nodes: [
-                  {
-                    object: 'text',
-                    leaves: [
-                      {
-                        text: 'かきくけこ',
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    }))).toEqual("- あいうえお\n- かきくけこ")
+    expect(serializer.serialize(
+      <value>
+        <document>
+          <block type="bulleted-list">
+            <block type="list-item">
+              あいうえお
+            </block>
+            <block type="list-item">
+              かきくけこ
+            </block>
+          </block>
+        </document>
+      </value>
+    )).toEqual("- あいうえお\n- かきくけこ")
   })
 })
