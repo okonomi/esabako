@@ -4,9 +4,9 @@ import { Value } from 'slate'
 import PluginEditList from 'slate-edit-list'
 
 const plugin = PluginEditList({
-  types: ['ol_list', 'ul_list'],
-  typeItem: "list_item",
-  typeDefault: "span",
+  types: ['ordered-list', 'bulleted-list'],
+  typeItem: 'list-item',
+  typeDefault: 'span',
 })
 const plugins = [plugin]
 
@@ -81,10 +81,9 @@ class SlateEditor extends React.Component {
       switch (node.type) {
       case 'block-quote':
         return <blockquote {...attributes}>{children}</blockquote>
-      case 'ul_list':
       case 'bulleted-list':
         return <ul {...attributes}>{children}</ul>
-      case 'ol_list':
+      case 'ordered-list':
         return <ol {...attributes}>{children}</ol>
       case 'heading-one':
         return <h1 {...attributes}>{children}</h1>
@@ -98,16 +97,6 @@ class SlateEditor extends React.Component {
         return <h5 {...attributes}>{children}</h5>
       case 'heading-six':
         return <h6 {...attributes}>{children}</h6>
-      case 'list_item':
-          return (
-              <li
-                  className={isCurrentItem ? 'current-item' : ''}
-                  title={isCurrentItem ? 'Current Item' : ''}
-                  {...props.attributes}
-              >
-                  {props.children}
-              </li>
-          );
       case 'list-item':
         return <li {...attributes}>{children}</li>
       case 'paragraph':

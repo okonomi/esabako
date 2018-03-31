@@ -5,9 +5,9 @@ const h = createHyperscript({
   blocks: {
     heading: 'heading-one',
     paragraph: 'paragraph',
-    ul_list: 'ul_list',
-    ol_list: 'ol_list',
-    list_item: 'list_item'
+    ul_list: 'bulleted-list',
+    ol_list: 'ordered-list',
+    list_item: 'list-item'
   }
 });
 
