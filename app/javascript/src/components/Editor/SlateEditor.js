@@ -57,7 +57,7 @@ class SlateEditor extends React.Component {
           placeholder="Write some markdown..."
           value={this.props.value}
           onChange={this.props.onChange}
-          // onKeyDown={this.onKeyDown}
+          onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
           plugins={plugins}
         />
