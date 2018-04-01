@@ -5,6 +5,7 @@ import EditorUtils from './../../../utils/EditorUtils'
 
 const BLOCK_TAGS = {
   p: 'paragraph',
+  span: 'span',
   li: 'list-item',
   ul: 'bulleted-list',
   ol: 'numbered-list',
@@ -129,7 +130,7 @@ const serializer = new Html({ rules: RULES })
 
 export default class Serializer {
   serialize(value) {
-    return this.serializeNode(value.document).replace(/\n+$/, '')
+    return this.serializeNode(0, value.document).replace(/\n+$/, '')
   }
 
   deserialize(markdown) {
@@ -137,38 +138,43 @@ export default class Serializer {
     return serializer.deserialize(html)
   }
 
-  serializeNode = (node) => {
-    if (
-      node.object == 'document' ||
-      (node.object == 'block' && Block.isBlockList(node.nodes))
-    ) {
-      let result = node.nodes.map(this.serializeNode).join('\n')
-      switch (node.type) {
-        case 'bulleted-list':
-          result += '\n'
-          break
+  serializeNode = (depth, node) => {
+    if (node.object === 'document') {
+      return node.nodes.map(node => this.serializeNode(depth, node)).join('\n')
+    }
+
+    if (node.object === 'block') {
+      let text
+      if (Block.isBlockList(node.nodes)) {
+        if (node.type === 'bulleted-list') {
+          depth++
+        }
+        text = node.nodes.map(node => this.serializeNode(depth, node)).join('\n')
+      } else {
+        text = node.text
       }
-      return result
-    } else {
+
       switch (node.type) {
         case 'heading-one':
-          return `# ${node.text}\n`
+          return `# ${text}\n`
         case 'heading-two':
-          return `## ${node.text}\n`
+          return `## ${text}\n`
         case 'heading-three':
-          return `### ${node.text}\n`
+          return `### ${text}\n`
         case 'heading-four':
-          return `#### ${node.text}\n`
+          return `#### ${text}\n`
         case 'heading-five':
-          return `##### ${node.text}\n`
+          return `##### ${text}\n`
         case 'heading-six':
-          return `###### ${node.text}\n`
+          return `###### ${text}\n`
         case 'paragraph':
-          return `${node.text}\n`
+          return `${text}\n`
+        case 'bulleted-list':
+          return `${text}\n`
         case 'list-item':
-          return `- ${node.text}`
+          return '  '.repeat(depth -1) + `- ${text}`
         default:
-          return `${node.text}`
+          return `${text}`
       }
     }
   }

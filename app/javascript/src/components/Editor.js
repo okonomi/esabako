@@ -3,6 +3,7 @@ import { Value } from 'slate'
 import Title from './Editor/Title'
 import SlateEditor from './Editor/SlateEditor'
 import Serializer from './Editor/Serializer'
+import InitialValue from './Editor/InitialValue'
 
 const serializer = new Serializer()
 
@@ -10,6 +11,7 @@ export default class Editor extends Component {
   state = {
     title: '',
     value: serializer.deserialize(''),
+    // value: InitialValue,
   }
 
   componentWillMount() {

@@ -6,9 +6,11 @@ marked.setOptions({
 })
 
 const renderer = new marked.Renderer()
-// renderer.paragraph = (text) => {
-//   return `<p>${text}<br /></p>`
-// }
+renderer.listitem = text => {
+  // テキスト部分を<span>で囲む
+  text = text.replace(/^([^<]*)/, '<span>$1</span>')
+  return `<li>${text}</li>\n`
+}
 
 const turndownService = new TurndownService({
   headingStyle: 'atx',
