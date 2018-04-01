@@ -3,13 +3,15 @@ import { Value } from 'slate'
 import Title from './Editor/Title'
 import SlateEditor from './Editor/SlateEditor'
 import Serializer from './Editor/Serializer'
+import InitialValue from './Editor/InitialValue'
 
 const serializer = new Serializer()
 
 export default class Editor extends Component {
   state = {
     title: '',
-    value: serializer.deserialize(''),
+    // value: serializer.deserialize(''),
+    value: InitialValue,
   }
 
   componentWillMount() {
@@ -19,7 +21,7 @@ export default class Editor extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       title: nextProps.post.title,
-      value: serializer.deserialize(nextProps.post.body),
+      // value: serializer.deserialize(nextProps.post.body),
     })
   }
 
