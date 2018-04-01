@@ -13,7 +13,7 @@ describe('#serialize', () => {
         <document>
           <block type="bulleted-list">
             <block type="list-item">
-              あいうえお
+              <block type="span">あいうえお</block>
             </block>
           </block>
         </document>
@@ -27,10 +27,10 @@ describe('#serialize', () => {
         <document>
           <block type="bulleted-list">
             <block type="list-item">
-              あいうえお
+              <block type="span">あいうえお</block>
             </block>
             <block type="list-item">
-              かきくけこ
+              <block type="span">かきくけこ</block>
             </block>
           </block>
         </document>

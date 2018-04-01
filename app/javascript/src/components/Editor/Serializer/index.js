@@ -138,37 +138,39 @@ export default class Serializer {
   }
 
   serializeNode = (node) => {
-    if (
-      node.object == 'document' ||
-      (node.object == 'block' && Block.isBlockList(node.nodes))
-    ) {
-      let result = node.nodes.map(this.serializeNode).join('\n')
-      switch (node.type) {
-        case 'bulleted-list':
-          result += '\n'
-          break
+    if (node.object === 'document') {
+      return node.nodes.map(this.serializeNode).join('\n')
+    }
+
+    if (node.object === 'block') {
+      let text
+      if (Block.isBlockList(node.nodes)) {
+        text = node.nodes.map(this.serializeNode).join('\n')
+      } else {
+        text = node.text
       }
-      return result
-    } else {
+
       switch (node.type) {
         case 'heading-one':
-          return `# ${node.text}\n`
+          return `# ${text}\n`
         case 'heading-two':
-          return `## ${node.text}\n`
+          return `## ${text}\n`
         case 'heading-three':
-          return `### ${node.text}\n`
+          return `### ${text}\n`
         case 'heading-four':
-          return `#### ${node.text}\n`
+          return `#### ${text}\n`
         case 'heading-five':
-          return `##### ${node.text}\n`
+          return `##### ${text}\n`
         case 'heading-six':
-          return `###### ${node.text}\n`
+          return `###### ${text}\n`
         case 'paragraph':
-          return `${node.text}\n`
+          return `${text}\n`
+        case 'bulleted-list':
+          return `${text}\n`
         case 'list-item':
-          return `- ${node.text}`
+          return `- ${text}`
         default:
-          return `${node.text}`
+          return `${text}`
       }
     }
   }
