@@ -37,4 +37,28 @@ describe('#serialize', () => {
       </value>
     )).toEqual("- あいうえお\n- かきくけこ")
   })
+
+  test('nested list', () => {
+    const input = (
+      <value>
+        <document>
+          <block type="bulleted-list">
+            <block type="list-item">
+              <block type="span">あいうえお</block>
+              <block type="bulleted-list">
+                <block type="list-item">
+                  <block type="span">かきくけこ</block>
+                </block>
+              </block>
+            </block>
+          </block>
+        </document>
+      </value>      
+    )
+    const output = `
+- あいうえお
+  - かきくけこ
+`.trim()
+    expect(serializer.serialize(input)).toEqual(output)
+  })
 })

@@ -129,7 +129,7 @@ const serializer = new Html({ rules: RULES })
 
 export default class Serializer {
   serialize(value) {
-    return this.serializeNode(value.document).replace(/\n+$/, '')
+    return this.serializeNode(0, value.document).replace(/\n+$/, '')
   }
 
   deserialize(markdown) {
@@ -137,15 +137,18 @@ export default class Serializer {
     return serializer.deserialize(html)
   }
 
-  serializeNode = (node) => {
+  serializeNode = (depth, node) => {
     if (node.object === 'document') {
-      return node.nodes.map(this.serializeNode).join('\n')
+      return node.nodes.map(node => this.serializeNode(depth, node)).join('\n')
     }
 
     if (node.object === 'block') {
       let text
       if (Block.isBlockList(node.nodes)) {
-        text = node.nodes.map(this.serializeNode).join('\n')
+        if (node.type === 'bulleted-list') {
+          depth++
+        }
+        text = node.nodes.map(node => this.serializeNode(depth, node)).join('\n')
       } else {
         text = node.text
       }
@@ -168,7 +171,7 @@ export default class Serializer {
         case 'bulleted-list':
           return `${text}\n`
         case 'list-item':
-          return `- ${text}`
+          return '  '.repeat(depth -1) + `- ${text}`
         default:
           return `${text}`
       }
