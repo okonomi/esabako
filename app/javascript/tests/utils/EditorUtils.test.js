@@ -7,8 +7,8 @@ describe('#convertMarkdownToHtml', () => {
   - bbb
 `.trim()
     const expected = `<ul>
-<li>aaa<ul>
-<li>bbb</li>
+<li><span>aaa</span><ul>
+<li><span>bbb</span></li>
 </ul>
 </li>
 </ul>
