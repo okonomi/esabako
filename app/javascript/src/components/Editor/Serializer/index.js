@@ -5,6 +5,7 @@ import EditorUtils from './../../../utils/EditorUtils'
 
 const BLOCK_TAGS = {
   p: 'paragraph',
+  span: 'span',
   li: 'list-item',
   ul: 'bulleted-list',
   ol: 'numbered-list',

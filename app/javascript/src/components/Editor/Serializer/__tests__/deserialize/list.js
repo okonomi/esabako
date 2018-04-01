@@ -11,17 +11,18 @@ describe('#deserialize', () => {
     const input = `
 - あいうえお
 `.trim()
-    expect(serializer.deserialize(input).toJSON()).toEqual((
+    const output = (
       <value>
         <document>
           <block type="bulleted-list">
             <block type="list-item">
-              あいうえお
+              <block type="span">あいうえお</block>
             </block>
           </block>
         </document>
       </value>
-    ).toJSON())
+    )
+    expect(serializer.deserialize(input).toJSON()).toEqual((output).toJSON())
   })
 
   test('list in some items', () => {
@@ -29,21 +30,21 @@ describe('#deserialize', () => {
 - あいうえお
 - かきくけこ
 `.trim()
-
-    expect(serializer.deserialize(input).toJSON()).toEqual((
+    const output = (
       <value>
         <document>
           <block type="bulleted-list">
             <block type="list-item">
-              あいうえお
+              <block type="span">あいうえお</block>
             </block>
             <block type="list-item">
-              かきくけこ
+              <block type="span">かきくけこ</block>
             </block>
           </block>
         </document>
       </value>
-    ).toJSON())
+    )
+    expect(serializer.deserialize(input).toJSON()).toEqual((output).toJSON())
   })
 
   test('nested list', () => {
@@ -51,22 +52,22 @@ describe('#deserialize', () => {
 - あいうえお
   - かきくけこ
 `.trim()
-
-    expect(serializer.deserialize(input).toJSON()).toEqual((
+    const output = (
       <value>
         <document>
           <block type="bulleted-list">
             <block type="list-item">
-              あいうえお
+              <block type="span">あいうえお</block>
               <block type="bulleted-list">
                 <block type="list-item">
-                  かきくけこ
+                  <block type="span">かきくけこ</block>
                 </block>
               </block>
             </block>
           </block>
         </document>
       </value>
-    ).toJSON())
+    )
+    expect(serializer.deserialize(input).toJSON()).toEqual((output).toJSON())
   })
 })
