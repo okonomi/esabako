@@ -63,3 +63,5 @@ gem 'webpacker'
 gem 'esa'
 
 gem 'dotenv-rails', require: 'dotenv/rails-now'
+
+gem "omniauth", "~> 1.8"

@@ -84,6 +84,7 @@ GEM
       thor (>= 0.13.6)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    hashie (3.5.7)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -109,6 +110,9 @@ GEM
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    omniauth (1.8.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
     pg (0.21.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -214,6 +218,7 @@ DEPENDENCIES
   foreman
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  omniauth (~> 1.8)
   pg (~> 0.18)
   pry-rails
   puma (~> 3.7)
