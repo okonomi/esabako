@@ -65,3 +65,5 @@ gem 'esa'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 
 gem "omniauth", "~> 1.8"
+
+gem "omniauth-esa", "~> 0.1.0"
