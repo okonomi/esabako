@@ -229,8 +229,7 @@ DEPENDENCIES
   foreman
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
-  omniauth (~> 1.8)
-  omniauth-esa (~> 0.1.0)
+  omniauth-esa
   pg (~> 0.18)
   pry-rails
   puma (~> 3.7)
