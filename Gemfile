@@ -64,4 +64,6 @@ gem 'esa'
 
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 
+gem 'devise'
+
 gem 'omniauth-esa'
