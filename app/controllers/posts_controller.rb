@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @post.update(current_user.token, post_params)
+      if @post.update(current_user.token, session['team'], post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render json: { message: 'ok' }, status: :ok }
       else
@@ -66,7 +66,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      client = Esa::Client.new(access_token: current_user.token, current_team: 'okonomi')
+      client = Esa::Client.new(access_token: current_user.token, current_team: session['team'])
       @post = Post.new(client.post(params[:id]).body.select { |key, _| %w[number name body_md body_html].include? key })
       @post.id = @post.number
     end
