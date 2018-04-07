@@ -8,12 +8,12 @@ module Users
         set_flash_message(:notice, :success, kind: 'esa') if is_navigational_format?
       else
         session['devise.esa_data'] = request.env['omniauth.auth']
-        redirect_to '/'
+        redirect_to root_path
       end
     end
 
     def failure
-      redirect_to '/'
+      redirect_to root_path
     end
   end
 end
