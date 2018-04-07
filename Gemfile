@@ -79,3 +79,5 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'devise'
 # OmniAuth strategy for esa API v1 (https://github.com/esaio/omniauth-esa)
 gem 'omniauth-esa'
+
+gem 'her'
