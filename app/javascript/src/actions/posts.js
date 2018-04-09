@@ -5,9 +5,9 @@ const loadPost = post => ({
   post
 })
 
-export const fetchPost = postId => {
+export const fetchPost = postNumber => {
   return (dispatch, getState) => {
-    axios.get(`/posts/${postId}.json`)
+    axios.get(`/posts/${postNumber}.json`)
       .then(response => {
         dispatch(loadPost({
           id: response.data.number,
@@ -21,9 +21,9 @@ export const fetchPost = postId => {
   }
 }
 
-export const sendPost = (postId, title, markdown) => {
+export const sendPost = (postNumber, title, markdown) => {
   return (dispatch, getState) => {
-    axios.patch(`/posts/${postId}.json`, {
+    axios.patch(`/posts/${postNumber}.json`, {
       post: {
         name: title,
         body_md: markdown,
