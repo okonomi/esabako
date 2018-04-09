@@ -49,21 +49,23 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
+  # Use Pry as your rails console (https://github.com/rweng/pry-rails)
   gem 'pry-rails'
-
+  # Process manager for applications with multiple components (http://github.com/ddollar/foreman)
   gem 'foreman'
+  # Add comments to your Gemfile with each dependency's description. (https://github.com/ivantsepp/annotate_gem)
+  gem 'annotate_gem'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+# Use webpack to manage app-like JavaScript modules in Rails (https://github.com/rails/webpacker)
 gem 'webpacker'
-
+# esa API v1 client library, written in Ruby (https://github.com/esaio/esa-ruby/)
 gem 'esa'
-
+# Autoload dotenv in Rails. (https://github.com/bkeepers/dotenv)
 gem 'dotenv-rails', require: 'dotenv/rails-now'
-
+# Flexible authentication solution for Rails with Warden (https://github.com/plataformatec/devise)
 gem 'devise'
-
+# OmniAuth strategy for esa API v1 (https://github.com/esaio/omniauth-esa)
 gem 'omniauth-esa'
