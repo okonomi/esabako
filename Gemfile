@@ -79,5 +79,5 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'devise'
 # OmniAuth strategy for esa API v1 (https://github.com/esaio/omniauth-esa)
 gem 'omniauth-esa'
-
+# A simple Representational State Transfer-based Hypertext Transfer Protocol-powered Object Relational Mapper. Her? (http://her-rb.org)
 gem 'her'
