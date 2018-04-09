@@ -53,6 +53,8 @@ group :development do
   gem 'pry-rails'
 
   gem 'foreman'
+
+  gem 'annotate_gem'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
