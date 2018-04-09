@@ -81,3 +81,5 @@ gem 'devise'
 gem 'omniauth-esa'
 # A simple Representational State Transfer-based Hypertext Transfer Protocol-powered Object Relational Mapper. Her? (http://her-rb.org)
 gem 'her'
+# Conventions-based JSON generation for Rails. (https://github.com/rails-api/active_model_serializers)
+gem 'active_model_serializers'
