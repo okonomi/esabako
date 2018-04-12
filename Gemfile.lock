@@ -153,7 +153,7 @@ GEM
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
     public_suffix (3.0.1)
-    puma (3.11.0)
+    puma (3.11.3)
     rack (2.0.4)
     rack-proxy (0.6.4)
       rack
@@ -265,7 +265,7 @@ DEPENDENCIES
   pry-doc
   pry-rails
   pry-stack_explorer
-  puma (~> 3.7)
+  puma (~> 3.11)
   rails (~> 5.1.4)
   sass-rails (~> 5.0)
   selenium-webdriver
