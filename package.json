@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "babel-jest": "^23.0.0-alpha.0",
-    "jest": "^22.4.2",
+    "jest": "^22.4.3",
     "webpack-dev-server": "2.11.2"
   },
   "scripts": {
