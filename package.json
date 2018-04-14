@@ -6,7 +6,7 @@
     "axios": "^0.18.0",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.1.0",
-    "coffeescript": "1.12.7",
+    "coffeescript": "2.2.4",
     "github-markdown-css": "^2.10.0",
     "immutable": "^3.8.2",
     "jquery": "^3.3.1",
