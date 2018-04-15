@@ -15,7 +15,9 @@ export default class Editor extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchPost(this.props.post.number)
+    if (this.props.post.number) {
+      this.props.fetchPost(this.props.post.number)
+    }
   }
 
   componentWillReceiveProps(nextProps) {
