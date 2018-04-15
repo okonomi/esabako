@@ -48,6 +48,8 @@ group :development, :test do
   gem 'pry-stack_explorer'
   # Provides YARD and extended documentation support for Pry (https://github.com/pry/pry-doc)
   gem 'pry-doc'
+  # RSpec for Rails (https://github.com/rspec/rspec-rails)
+  gem 'rspec-rails'
 end
 
 group :development do
