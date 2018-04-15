@@ -3,7 +3,9 @@ import { fetchPost, sendPost } from './../actions/posts'
 import Editor from '../components/Editor';
 
 const mapStateToProps = state => {
-  return state
+  return {
+    post: state.post
+  }
 }
 
 const mapDispatchToProps = dispatch => {
