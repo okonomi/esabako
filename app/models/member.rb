@@ -1,4 +1,4 @@
-class Post
+class Member
   include Her::Model
   include ActiveModel::Serialization
   belongs_to :team
