@@ -1,6 +1,12 @@
 class Post
   include Her::Model
   include ActiveModel::Serialization
-  belongs_to :team
+
   parse_root_in_json true, format: :active_model_serializers
+  collection_path 'teams/:team_name/posts'
+  primary_key :number
+
+  belongs_to :team
+
+  scope :for_team, ->(team_name) { where(_team_name: team_name) }
 end

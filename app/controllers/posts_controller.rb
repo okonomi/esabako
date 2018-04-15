@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if Post.save_existing(params[:number], post: { body_md: post_params[:body_md] }, _team_name: 'okonomi')
+      if Post.save_existing(params[:number], post: { body_md: post_params[:body_md] }, _team_name: session['team'])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render json: { message: 'ok' }, status: :ok }
       else
@@ -66,7 +66,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:number], _team_name: 'okonomi')
+      @post = Post.for_team(session['team']).find(params[:number])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
