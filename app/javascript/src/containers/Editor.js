@@ -8,11 +8,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPost: postId => {
-      dispatch(fetchPost(postId))
+    fetchPost: postNumber => {
+      dispatch(fetchPost(postNumber))
     },
-    sendPost: (postId, title, markdown) => {
-      dispatch(sendPost(postId, title, markdown))
+    sendPost: (postNumber, title, markdown) => {
+      dispatch(sendPost(postNumber, title, markdown))
     }
   }
 }

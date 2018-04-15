@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @post.update(current_user.token, session['team'], post_params)
+      if Post.save_existing(params[:number], post: { body_md: post_params[:body_md] }, _team_name: session['team'])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render json: { message: 'ok' }, status: :ok }
       else
@@ -66,9 +66,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      client = Esa::Client.new(access_token: current_user.token, current_team: session['team'])
-      @post = Post.new(client.post(params[:id]).body.select { |key, _| %w[number name body_md body_html].include? key })
-      @post.id = @post.number
+      @post = Post.for_team(session['team']).find(params[:number])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

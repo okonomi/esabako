@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resource :sandbox, only: :show
-  resources :posts
+  resources :posts, param: :number
 
   get '/auth/:provider/callback' => 'sessions#create'
 

@@ -15,7 +15,7 @@ export default class Editor extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchPost(this.props.post.id)
+    this.props.fetchPost(this.props.post.number)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -27,7 +27,7 @@ export default class Editor extends Component {
 
   handleSaveClick = () => {
     const markdown = serializer.serialize(this.state.value)
-    this.props.sendPost(this.props.post.id, this.state.title, markdown)
+    this.props.sendPost(this.props.post.number, this.state.title, markdown)
   }
 
   handleTitleChange = (event) => {
