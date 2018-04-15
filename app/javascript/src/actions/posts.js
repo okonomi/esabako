@@ -21,7 +21,7 @@ export const fetchPost = postNumber => {
   }
 }
 
-export const sendPost = (postNumber, title, markdown) => {
+export const updatePost = (postNumber, title, markdown) => {
   return (dispatch, getState) => {
     axios.patch(`/posts/${postNumber}.json`, {
       post: {
