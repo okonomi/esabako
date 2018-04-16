@@ -21,6 +21,23 @@ export const fetchPost = postNumber => {
   }
 }
 
+export const createPost = (title, markdown) => {
+  return (dispatch, getState) => {
+    axios.post('/posts.json', {
+      post: {
+        name: title,
+        body_md: markdown,
+      }
+    })
+      .then((response) => {
+        console.log('saved')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+}
+
 export const updatePost = (postNumber, title, markdown) => {
   return (dispatch, getState) => {
     axios.patch(`/posts/${postNumber}.json`, {

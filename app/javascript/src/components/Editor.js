@@ -29,7 +29,11 @@ export default class Editor extends Component {
 
   handleSaveClick = () => {
     const markdown = serializer.serialize(this.state.value)
-    this.props.updatePost(this.props.post.number, this.state.title, markdown)
+    if (this.props.post.number) {
+      this.props.updatePost(this.props.post.number, this.state.title, markdown)
+    } else {
+      this.props.createPost(this.state.title, markdown)
+    }
   }
 
   handleTitleChange = (event) => {
