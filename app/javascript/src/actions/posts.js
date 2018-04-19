@@ -30,7 +30,7 @@ export const createPost = (title, markdown) => {
         body_md: markdown,
       }
     })
-      .then((response) => {
+      .then(response => {
         dispatch(notify({
           message: 'created',
           status: response.status
@@ -41,7 +41,7 @@ export const createPost = (title, markdown) => {
           body: response.data.body_md,
         }))
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error)
       })
   }
@@ -55,13 +55,13 @@ export const updatePost = (postNumber, title, markdown) => {
         body_md: markdown,
       }
     })
-      .then((response) => {
+      .then(response => {
         dispatch(notify({
           message: 'updated',
           status: response.status
         }))
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error)
       })
   }
