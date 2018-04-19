@@ -5869,6 +5869,10 @@ realpath-native@^1.0.0:
   dependencies:
     util.promisify "^1.0.0"
 
+reapop-theme-wybo@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/reapop-theme-wybo/-/reapop-theme-wybo-1.0.2.tgz#334d14e4f1bbe7ea4b20318395739c007cc8bf49"
+
 reapop@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/reapop/-/reapop-1.2.0.tgz#baa3ee52c69a0ac31dd2f9f2e94480678603c08d"
