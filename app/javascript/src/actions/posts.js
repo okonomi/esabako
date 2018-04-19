@@ -10,7 +10,7 @@ export const fetchPost = postNumber => {
     axios.get(`/posts/${postNumber}.json`)
       .then(response => {
         dispatch(loadPost({
-          id: response.data.number,
+          number: response.data.number,
           title: response.data.name,
           body: response.data.body_md,
         }))
@@ -30,7 +30,12 @@ export const createPost = (title, markdown) => {
       }
     })
       .then((response) => {
-        console.log('saved')
+        console.log('created')
+        dispatch(loadPost({
+          number: response.data.number,
+          title: response.data.name,
+          body: response.data.body_md,
+        }))
       })
       .catch((error) => {
         console.log(error)
@@ -47,7 +52,7 @@ export const updatePost = (postNumber, title, markdown) => {
       }
     })
       .then((response) => {
-        console.log('saved')
+        console.log('updated')
       })
       .catch((error) => {
         console.log(error)
