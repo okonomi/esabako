@@ -26,12 +26,12 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(post: post_params, _team_name: session['team'])
 
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        format.json { render json: @post, status: :created }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if Post.save_existing(params[:number], post: { body_md: post_params[:body_md] }, _team_name: session['team'])
+      if Post.save_existing(params[:number], post: post_params, _team_name: session['team'])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render json: { message: 'ok' }, status: :ok }
       else
@@ -71,6 +71,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.fetch(:post, {})
+      params.fetch(:post, {}).permit(:name, :body_md).to_h
     end
 end
