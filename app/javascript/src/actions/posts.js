@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { notify } from 'reapop'
 
 const loadPost = post => ({
   type: 'LOAD_POST',
@@ -30,7 +31,10 @@ export const createPost = (title, markdown) => {
       }
     })
       .then((response) => {
-        console.log('created')
+        dispatch(notify({
+          message: 'created',
+          status: response.status
+        }))
         dispatch(loadPost({
           number: response.data.number,
           title: response.data.name,
@@ -52,7 +56,10 @@ export const updatePost = (postNumber, title, markdown) => {
       }
     })
       .then((response) => {
-        console.log('updated')
+        dispatch(notify({
+          message: 'updated',
+          status: response.status
+        }))
       })
       .catch((error) => {
         console.log(error)
