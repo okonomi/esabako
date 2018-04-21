@@ -18,7 +18,7 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "reapop": "^1.2.0",
-    "reapop-theme-wybo": "^1.0.2",
+    "reapop-theme-bootstrap": "^1.0.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "slate": "^0.33.0",
