@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   before_action :initialize_her
+  before_action :set_team_name
 
   def new_session_path(scope)
     new_user_session_path
@@ -25,5 +26,13 @@ class ApplicationController < ActionController::Base
       # Adapter
       c.use Faraday::Adapter::NetHttp
     end
+  end
+
+  def set_team_name
+    return unless user_signed_in?
+    return if session['team'].present?
+
+    team = Team.all.first
+    session['team'] = team.name
   end
 end
