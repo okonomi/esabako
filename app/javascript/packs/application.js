@@ -21,9 +21,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 document.addEventListener('turbolinks:load', () => {
   const elem = document.querySelector('[rel=esa-editor]')
   if (elem) {
+    const teamName = elem.getAttribute('team-name')
     const postNumber = elem.getAttribute('post-number')
 
-    const store = configureStore({ post: { number: postNumber } })
+    const store = configureStore({
+      team: { name: teamName },
+      post: { number: postNumber },
+    })
 
     ReactDOM.render(
       <Provider store={store}>

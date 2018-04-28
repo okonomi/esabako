@@ -6,9 +6,9 @@ const loadPost = post => ({
   post
 })
 
-export const fetchPost = postNumber => {
+export const fetchPost = (teamName, postNumber) => {
   return (dispatch, getState) => {
-    axios.get(`/posts/${postNumber}.json`)
+    axios.get(`/teams/${teamName}/posts/${postNumber}.json`)
       .then(response => {
         dispatch(loadPost({
           number: response.data.number,
@@ -22,9 +22,9 @@ export const fetchPost = postNumber => {
   }
 }
 
-export const createPost = (title, markdown) => {
+export const createPost = (teamName, title, markdown) => {
   return (dispatch, getState) => {
-    axios.post('/posts.json', {
+    axios.post(`/teams/${teamName}/posts.json`, {
       post: {
         name: title,
         body_md: markdown,
@@ -47,9 +47,9 @@ export const createPost = (title, markdown) => {
   }
 }
 
-export const updatePost = (postNumber, title, markdown) => {
+export const updatePost = (teamName, postNumber, title, markdown) => {
   return (dispatch, getState) => {
-    axios.patch(`/posts/${postNumber}.json`, {
+    axios.patch(`/teams/${teamName}/posts/${postNumber}.json`, {
       post: {
         name: title,
         body_md: markdown,

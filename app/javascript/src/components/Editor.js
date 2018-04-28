@@ -16,7 +16,7 @@ export default class Editor extends Component {
 
   componentWillMount() {
     if (this.props.post.number) {
-      this.props.fetchPost(this.props.post.number)
+      this.props.fetchPost(this.props.team.name, this.props.post.number)
     }
   }
 
@@ -30,9 +30,9 @@ export default class Editor extends Component {
   handleSaveClick = () => {
     const markdown = serializer.serialize(this.state.value)
     if (this.props.post.number) {
-      this.props.updatePost(this.props.post.number, this.state.title, markdown)
+      this.props.updatePost(this.props.team.name, this.props.post.number, this.state.title, markdown)
     } else {
-      this.props.createPost(this.state.title, markdown)
+      this.props.createPost(this.props.team.name, this.state.title, markdown)
     }
   }
 
