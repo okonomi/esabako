@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resource :sandbox, only: :show
-  resources :teams, param: :name do
+  resources :teams, param: :name, only: :index do
     resources :posts, param: :number
   end
 
