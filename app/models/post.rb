@@ -7,6 +7,4 @@ class Post
   primary_key :number
 
   belongs_to :team
-
-  scope :for_team, ->(team_name) { where(_team_name: team_name) }
 end

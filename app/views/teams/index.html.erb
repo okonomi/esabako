@@ -1,0 +1,9 @@
+<h1>Teams</h1>
+
+<ul>
+  <% @teams.each do |team| %>
+    <li>
+      <td><%= link_to team.name, team_posts_path(team) %></td>
+    </li>
+  <% end %>
+</ul>

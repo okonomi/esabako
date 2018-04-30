@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_team
   before_action :set_post, only: [:show, :edit, :destroy]
 
   # GET /posts
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post: post_params, _team_name: session['team'])
+    @post = Post.new(post: post_params, _team_name: @team.name)
 
     respond_to do |format|
       if @post.save
@@ -43,7 +44,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if Post.save_existing(params[:number], post: post_params, _team_name: session['team'])
+      if Post.save_existing(params[:number], post: post_params, _team_name: @team.name)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render json: { message: 'ok' }, status: :ok }
       else
@@ -64,9 +65,13 @@ class PostsController < ApplicationController
   end
 
   private
+    def set_team
+      @team = Team.find(params[:team_name])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.for_team(session['team']).find(params[:number])
+      @post = @team.posts.find(params[:number])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

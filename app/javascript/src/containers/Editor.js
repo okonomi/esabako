@@ -4,20 +4,21 @@ import Editor from '../components/Editor';
 
 const mapStateToProps = state => {
   return {
-    post: state.post
+    team: state.team,
+    post: state.post,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPost: postNumber => {
-      dispatch(fetchPost(postNumber))
+    fetchPost: (teamName, postNumber) => {
+      dispatch(fetchPost(teamName, postNumber))
     },
-    createPost: (title, markdown) => {
-      dispatch(createPost(title, markdown))
+    createPost: (teamName, title, markdown) => {
+      dispatch(createPost(teamName, title, markdown))
     },
-    updatePost: (postNumber, title, markdown) => {
-      dispatch(updatePost(postNumber, title, markdown))
+    updatePost: (teamName, postNumber, title, markdown) => {
+      dispatch(updatePost(teamName, postNumber, title, markdown))
     }
   }
 }

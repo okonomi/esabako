@@ -1,7 +1,5 @@
-import axios from 'axios'
-
 const initialState = {
-  id: undefined,
+  number: undefined,
   title: '',
   body: '',
 }
