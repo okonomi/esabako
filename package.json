@@ -5,7 +5,7 @@
     "@rails/webpacker": "^3.4.0",
     "axios": "^0.18.0",
     "babel-preset-react": "^6.24.1",
-    "bootstrap": "^4.1.0",
+    "bootstrap": "^4.1.1",
     "coffeescript": "1.12.7",
     "github-markdown-css": "^2.10.0",
     "immutable": "^3.8.2",
