@@ -11,5 +11,11 @@ module.exports = {
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
+  },
+  "rules": {
+    "react/prop-types": "warn",
+    "react/no-deprecated": "warn",
+    "no-unused-vars": "warn",
+    "no-console": "warn"
   }
 };
