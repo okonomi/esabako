@@ -19,7 +19,7 @@ module.exports = {
     "no-unused-vars": "warn",
     "no-console": "warn",
     "prettier/prettier": [
-      "warn",
+      "error",
       {
         "semi": false,
         "singleQuote": true,
