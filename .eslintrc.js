@@ -17,6 +17,14 @@ module.exports = {
     "react/prop-types": "warn",
     "react/no-deprecated": "warn",
     "no-unused-vars": "warn",
-    "no-console": "warn"
+    "no-console": "warn",
+    "prettier/prettier": [
+      "warn",
+      {
+        "semi": false,
+        "singleQuote": true,
+        "trailingComma": "es5"
+      }
+    ]
   }
 };
