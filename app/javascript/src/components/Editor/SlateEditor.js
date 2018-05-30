@@ -75,10 +75,10 @@ class SlateEditor extends React.Component {
   renderNode = props => {
     const { node, attributes, children, editor } = props
     const isCurrentItem = plugin.utils
-        .getItemsAtRange(editor.value)
-        .contains(node);
+      .getItemsAtRange(editor.value)
+      .contains(node)
 
-      switch (node.type) {
+    switch (node.type) {
       case 'block-quote':
         return <blockquote {...attributes}>{children}</blockquote>
       case 'bulleted-list':
@@ -104,8 +104,8 @@ class SlateEditor extends React.Component {
       case 'span':
         return <span {...attributes}>{children}</span>
       default:
-        return <p {...attributes}>{children}</p>;
-      }
+        return <p {...attributes}>{children}</p>
+    }
   }
 
   /**
@@ -224,16 +224,18 @@ class SlateEditor extends React.Component {
       return
     }
 
-    if (![
-      'heading-one',
-      'heading-two',
-      'heading-three',
-      'heading-four',
-      'heading-five',
-      'heading-six',
-      'block-quote',
-      'paragraph',
-    ].includes(startBlock.type)) {
+    if (
+      ![
+        'heading-one',
+        'heading-two',
+        'heading-three',
+        'heading-four',
+        'heading-five',
+        'heading-six',
+        'block-quote',
+        'paragraph',
+      ].includes(startBlock.type)
+    ) {
       return
     }
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { fetchPost, createPost, updatePost } from './../actions/posts'
-import Editor from '../components/Editor';
+import Editor from '../components/Editor'
 
 const mapStateToProps = state => {
   return {
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
     },
     updatePost: (teamName, postNumber, title, markdown) => {
       dispatch(updatePost(teamName, postNumber, title, markdown))
-    }
+    },
   }
 }
 
