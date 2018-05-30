@@ -48,7 +48,11 @@
     "webpack-dev-server": "2.11.2"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": ["eslint --fix", "git add"]
   },
   "jest": {
     "roots": [
