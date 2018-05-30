@@ -2,7 +2,7 @@ import marked from 'marked'
 import TurndownService from 'turndown'
 
 marked.setOptions({
-  breaks: true
+  breaks: true,
 })
 
 const renderer = new marked.Renderer()
@@ -14,7 +14,7 @@ renderer.listitem = text => {
 
 const turndownService = new TurndownService({
   headingStyle: 'atx',
-  bulletListMarker: '-'
+  bulletListMarker: '-',
 })
 
 export default class EditorUtils {

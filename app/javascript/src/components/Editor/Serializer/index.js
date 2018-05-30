@@ -149,7 +149,9 @@ export default class Serializer {
         if (node.type === 'bulleted-list') {
           depth++
         }
-        text = node.nodes.map(node => this.serializeNode(depth, node)).join('\n')
+        text = node.nodes
+          .map(node => this.serializeNode(depth, node))
+          .join('\n')
       } else {
         text = node.text
       }
@@ -172,7 +174,7 @@ export default class Serializer {
         case 'bulleted-list':
           return `${text}\n`
         case 'list-item':
-          return '  '.repeat(depth -1) + `- ${text}`
+          return '  '.repeat(depth - 1) + `- ${text}`
         default:
           return `${text}`
       }

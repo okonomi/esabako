@@ -8,14 +8,14 @@ describe('#serialize', () => {
   const serializer = new Serializer()
 
   test('heading', () => {
-    expect(serializer.serialize(
-      <value>
-        <document>
-          <block type="heading-one">
-            あいうえお
-          </block>
-        </document>
-      </value>
-    )).toEqual("# あいうえお")
+    expect(
+      serializer.serialize(
+        <value>
+          <document>
+            <block type="heading-one">あいうえお</block>
+          </document>
+        </value>
+      )
+    ).toEqual('# あいうえお')
   })
 })

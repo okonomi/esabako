@@ -5,7 +5,7 @@ const initialState = {
 }
 
 export default function post(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'LOAD_POST':
       return {
         ...state,

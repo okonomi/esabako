@@ -22,7 +22,7 @@ describe('#deserialize', () => {
         </document>
       </value>
     )
-    expect(serializer.deserialize(input).toJSON()).toEqual((output).toJSON())
+    expect(serializer.deserialize(input).toJSON()).toEqual(output.toJSON())
   })
 
   test('list in some items', () => {
@@ -44,7 +44,7 @@ describe('#deserialize', () => {
         </document>
       </value>
     )
-    expect(serializer.deserialize(input).toJSON()).toEqual((output).toJSON())
+    expect(serializer.deserialize(input).toJSON()).toEqual(output.toJSON())
   })
 
   test('nested list', () => {
@@ -68,6 +68,6 @@ describe('#deserialize', () => {
         </document>
       </value>
     )
-    expect(serializer.deserialize(input).toJSON()).toEqual((output).toJSON())
+    expect(serializer.deserialize(input).toJSON()).toEqual(output.toJSON())
   })
 })

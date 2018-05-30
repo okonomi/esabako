@@ -3,7 +3,7 @@ import NotificationsSystem from 'reapop'
 import theme from 'reapop-theme-bootstrap'
 import Editor from './../containers/Editor'
 
-const App = (props) => {
+const App = props => {
   return (
     <div>
       <NotificationsSystem theme={theme} />

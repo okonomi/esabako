@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ContentEditable from 'react-contenteditable'
 
-const Title = (props) => {
+const Title = props => {
   return (
     <Fragment>
       <ContentEditable
