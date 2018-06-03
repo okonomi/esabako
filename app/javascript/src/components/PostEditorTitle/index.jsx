@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ContentEditable from 'react-contenteditable'
 
-const Title = props => {
+const PostEditorTitle = props => {
   return (
     <Fragment>
       <ContentEditable
@@ -13,4 +13,4 @@ const Title = props => {
   )
 }
 
-export default Title
+export default PostEditorTitle

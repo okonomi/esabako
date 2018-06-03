@@ -1,13 +1,13 @@
 import React from 'react'
 import NotificationsSystem from 'reapop'
 import theme from 'reapop-theme-bootstrap'
-import Editor from './../containers/Editor'
+import PostEditor from './../containers/PostEditor'
 
 const App = props => {
   return (
     <div>
       <NotificationsSystem theme={theme} />
-      <Editor />
+      <PostEditor />
     </div>
   )
 }

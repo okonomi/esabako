@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Value } from 'slate'
-import Title from './Editor/Title'
+import Title from './../PostEditorTitle'
 import SlateEditor from './Editor/SlateEditor'
 import Serializer from './Editor/Serializer'
 import InitialValue from './Editor/InitialValue'

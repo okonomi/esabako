@@ -16,6 +16,7 @@ module.exports = {
   "rules": {
     "react/prop-types": "warn",
     "react/no-deprecated": "warn",
+    "react/jsx-filename-extension": "error",
     "no-unused-vars": "warn",
     "no-console": "warn",
     "prettier/prettier": [

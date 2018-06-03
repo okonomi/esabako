@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import * as postActions from './../ducks/post'
-import Editor from '../components/Editor'
+import PostEditor from '../components/PostEditor'
 
 const mapStateToProps = state => {
   return {
@@ -26,4 +26,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Editor)
+)(PostEditor)
