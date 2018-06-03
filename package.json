@@ -20,6 +20,7 @@
     "reapop": "^1.2.0",
     "reapop-theme-bootstrap": "^1.0.1",
     "redux": "^3.7.2",
+    "redux-actions": "^2.4.0",
     "redux-thunk": "^2.2.0",
     "slate": "^0.33.6",
     "slate-edit-list": "^0.11.3",
@@ -52,7 +53,10 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "app/javascript/**/*.{js,jsx}": ["eslint --fix", "git add"]
+    "app/javascript/**/*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "jest": {
     "roots": [

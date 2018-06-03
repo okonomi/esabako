@@ -1,8 +1,9 @@
+import { createAction } from 'redux-actions'
 import axios from 'axios'
 import { notify } from 'reapop'
 
-const LOAD_POST = 'esabako/posts/LOAD_POST'
-const SAVE_POST = 'esabako/posts/SAVE_POST'
+const LOAD_POST = 'esabako/post/LOAD_POST'
+const SAVE_POST = 'esabako/post/SAVE_POST'
 
 const initialState = {
   number: undefined,
@@ -15,7 +16,7 @@ export default function reducer(state = initialState, action) {
     case LOAD_POST:
       return {
         ...state,
-        ...action.post,
+        ...action.payload,
       }
 
     case SAVE_POST:
@@ -25,10 +26,7 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-const loadPost = post => ({
-  type: LOAD_POST,
-  post,
-})
+const loadPost = createAction(LOAD_POST)
 
 export const fetchPost = (teamName, postNumber) => {
   return (dispatch, getState) => {
