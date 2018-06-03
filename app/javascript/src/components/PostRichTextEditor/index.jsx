@@ -10,7 +10,7 @@ const plugin = PluginEditList({
 })
 const plugins = [plugin]
 
-class SlateEditor extends React.Component {
+class PostRichTextEditor extends React.Component {
   /**
    * Get the block type for a series of auto-markdown shortcut `chars`.
    *
@@ -249,4 +249,4 @@ class SlateEditor extends React.Component {
  * Export.
  */
 
-export default SlateEditor
+export default PostRichTextEditor
