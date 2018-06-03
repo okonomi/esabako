@@ -1,8 +1,32 @@
 import axios from 'axios'
 import { notify } from 'reapop'
 
+const LOAD_POST = 'esabako/posts/LOAD_POST'
+const SAVE_POST = 'esabako/posts/SAVE_POST'
+
+const initialState = {
+  number: undefined,
+  title: '',
+  body: '',
+}
+
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case LOAD_POST:
+      return {
+        ...state,
+        ...action.post,
+      }
+
+    case SAVE_POST:
+      return state
+    default:
+      return state
+  }
+}
+
 const loadPost = post => ({
-  type: 'LOAD_POST',
+  type: LOAD_POST,
   post,
 })
 

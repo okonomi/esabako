@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchPost, createPost, updatePost } from './../actions/posts'
+import * as postActions from './../ducks/post'
 import Editor from '../components/Editor'
 
 const mapStateToProps = state => {
@@ -12,13 +12,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchPost: (teamName, postNumber) => {
-      dispatch(fetchPost(teamName, postNumber))
+      dispatch(postActions.fetchPost(teamName, postNumber))
     },
     createPost: (teamName, title, markdown) => {
-      dispatch(createPost(teamName, title, markdown))
+      dispatch(postActions.createPost(teamName, title, markdown))
     },
     updatePost: (teamName, postNumber, title, markdown) => {
-      dispatch(updatePost(teamName, postNumber, title, markdown))
+      dispatch(postActions.updatePost(teamName, postNumber, title, markdown))
     },
   }
 }
