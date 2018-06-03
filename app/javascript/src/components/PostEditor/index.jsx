@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Value } from 'slate'
 import Title from './../PostEditorTitle'
-import SlateEditor from './Editor/SlateEditor'
+import RichTextEditor from './../PostRichTextEditor'
 import Serializer from './../PostSerializer'
-import InitialValue from './Editor/InitialValue'
+import InitialValue from './../Editor/InitialValue'
 
 const serializer = new Serializer()
 
@@ -64,7 +64,7 @@ export default class Editor extends Component {
         <Title title={this.state.title} onChange={this.handleTitleChange} />
         <div className="row">
           <div className="col">
-            <SlateEditor
+            <RichTextEditor
               value={this.state.value}
               onChange={this.handleEditorChange}
             />
