@@ -1,7 +1,7 @@
 import React from 'react'
 import { Block } from 'slate'
 import Html from 'slate-html-serializer'
-import EditorUtils from './../../../utils/EditorUtils'
+import EditorUtils from './../../utils/EditorUtils'
 
 const BLOCK_TAGS = {
   p: 'paragraph',
@@ -128,7 +128,7 @@ const RULES = [
 
 const serializer = new Html({ rules: RULES })
 
-export default class Serializer {
+export default class PostSerializer {
   serialize(value) {
     return this.serializeNode(0, value.document).replace(/\n+$/, '')
   }
