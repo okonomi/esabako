@@ -3,7 +3,6 @@ import { Value } from 'slate'
 import Title from './../PostEditorTitle'
 import RichTextEditor from './../PostRichTextEditor'
 import Serializer from './../PostSerializer'
-import InitialValue from './../Editor/InitialValue'
 
 const serializer = new Serializer()
 
@@ -11,7 +10,6 @@ export default class Editor extends Component {
   state = {
     title: '',
     value: serializer.deserialize(''),
-    // value: InitialValue,
   }
 
   componentWillMount() {
