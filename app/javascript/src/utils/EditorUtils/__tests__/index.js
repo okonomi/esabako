@@ -1,4 +1,4 @@
-import EditorUtils from '../../src/utils/EditorUtils'
+import EditorUtils from './../'
 
 describe('#convertMarkdownToHtml', () => {
   test('nested list', () => {
