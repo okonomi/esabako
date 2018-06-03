@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { notify } from 'reapop'
 
-const LOAD_POST = 'esabako/posts/LOAD_POST'
-const SAVE_POST = 'esabako/posts/SAVE_POST'
+const LOAD_POST = 'esabako/post/LOAD_POST'
+const SAVE_POST = 'esabako/post/SAVE_POST'
 
 const initialState = {
   number: undefined,
