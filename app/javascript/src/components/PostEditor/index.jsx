@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Value } from 'slate'
-import Title from './../PostEditorTitle'
-import RichTextEditor from './../PostRichTextEditor'
-import Serializer from './../PostSerializer'
+import Title from 'components/PostEditorTitle'
+import RichTextEditor from 'components/PostRichTextEditor'
+import Serializer from 'components/PostSerializer'
 
 const serializer = new Serializer()
 
