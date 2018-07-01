@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import * as postActions from './../ducks/post'
-import PostEditor from '../components/PostEditor'
+import * as postActions from 'ducks/post'
+import PostEditor from 'components/PostEditor'
 
 const mapStateToProps = state => {
   return {

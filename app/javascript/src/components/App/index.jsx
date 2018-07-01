@@ -1,7 +1,7 @@
 import React from 'react'
 import NotificationsSystem from 'reapop'
 import theme from 'reapop-theme-bootstrap'
-import PostEditor from './../../containers/PostEditor'
+import PostEditor from 'containers/PostEditor'
 
 const App = props => {
   return (
