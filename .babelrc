@@ -29,6 +29,9 @@
     }
   },
   "plugins": [
+    ["module-resolver", {
+      "root": ["./app/javascript/src"]
+    }],
     "syntax-dynamic-import",
     "transform-object-rest-spread",
     [
