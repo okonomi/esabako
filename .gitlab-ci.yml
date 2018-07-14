@@ -1,0 +1,10 @@
+image: node:8
+
+before_script:
+  - mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
+  - curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
+
+reviewdog:
+  script:
+    - yarn
+    - reviewdog -reporter=gitlab-mr-discussion
