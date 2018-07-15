@@ -65,6 +65,8 @@ group :development do
   gem 'annotate_gem'
   # rspec command for spring (https://github.com/jonleighton/spring-commands-rspec)
   gem 'spring-commands-rspec'
+  # Automatic Ruby code style checking tool. (https://github.com/rubocop-hq/rubocop)
+  gem 'rubocop', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
