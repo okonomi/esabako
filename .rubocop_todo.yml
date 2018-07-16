@@ -351,9 +351,3 @@ Style/SymbolArray:
   Exclude:
     - 'Gemfile'
     - 'app/controllers/posts_controller.rb'
-
-# Offense count: 74
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 190
