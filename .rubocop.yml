@@ -19,3 +19,6 @@ Style/Documentation:
 Style/HashSyntax:
   Exclude:
     - config/routes.rb
+
+Bundler/OrderedGems:
+  Enabled: false
