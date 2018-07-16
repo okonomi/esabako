@@ -65,17 +65,17 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_team
-      @team = Team.find(params[:team_name])
-    end
+  def set_team
+    @team = Team.find(params[:team_name])
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = @team.posts.find(params[:number])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = @team.posts.find(params[:number])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.fetch(:post, {}).permit(:name, :body_md).to_h
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.fetch(:post, {}).permit(:name, :body_md).to_h
+  end
 end
