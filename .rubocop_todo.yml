@@ -318,23 +318,6 @@ Style/StderrPuts:
   Exclude:
     - 'bin/yarn'
 
-# Offense count: 60
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'Gemfile'
-    - 'bin/bundle'
-    - 'bin/spring'
-    - 'bin/webpack'
-    - 'bin/webpack-dev-server'
-    - 'bin/yarn'
-    - 'config/environments/production.rb'
-    - 'config/puma.rb'
-    - 'db/schema.rb'
-    - 'spec/rails_helper.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
