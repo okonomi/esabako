@@ -16,5 +16,5 @@ class PostSerializer < ActiveModel::Serializer
              :stargazers_count,
              :watchers_count,
              :star,
-             :watch  
+             :watch
 end
