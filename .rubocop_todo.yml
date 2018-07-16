@@ -119,13 +119,6 @@ Style/NumericLiterals:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'config/spring.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/PerlBackrefs:
   Exclude:
     - 'bin/bundle'
