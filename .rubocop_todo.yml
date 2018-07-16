@@ -35,13 +35,6 @@ Layout/IndentationWidth:
   Exclude:
     - 'app/controllers/posts_controller.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
-Lint/UnusedMethodArgument:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-
 # Offense count: 2
 Metrics/AbcSize:
   Max: 18
