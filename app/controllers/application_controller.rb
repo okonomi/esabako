@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   before_action :initialize_her
 
-  def new_session_path(scope)
+  def new_session_path(_scope)
     new_user_session_path
   end
 
@@ -15,13 +15,13 @@ class ApplicationController < ActionController::Base
       # Request
       c.use FaradayMiddleware::OAuth2, current_user.token, token_type: :bearer
       c.use Faraday::Request::UrlEncoded
-    
+
       # Response
       c.use Her::Middleware::DefaultParseJSON
-    
+
       c.use FaradayMiddleware::Instrumentation
       c.use Faraday::Response::Logger
-    
+
       # Adapter
       c.use Faraday::Adapter::NetHttp
     end

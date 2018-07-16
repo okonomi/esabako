@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team
-  before_action :set_post, only: [:show, :edit, :destroy]
+  before_action :set_post, only: %i[show edit destroy]
 
   # GET /posts
   # GET /posts.json
@@ -21,8 +21,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /posts
   # POST /posts.json
@@ -65,17 +64,18 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_team
-      @team = Team.find(params[:team_name])
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = @team.posts.find(params[:number])
-    end
+  def set_team
+    @team = Team.find(params[:team_name])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.fetch(:post, {}).permit(:name, :body_md).to_h
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = @team.posts.find(params[:number])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.fetch(:post, {}).permit(:name, :body_md).to_h
+  end
 end
