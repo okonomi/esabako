@@ -22,3 +22,7 @@ Style/HashSyntax:
 
 Bundler/OrderedGems:
   Enabled: false
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
