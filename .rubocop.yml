@@ -26,3 +26,6 @@ Bundler/OrderedGems:
 Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
+
+Metrics/AbcSize:
+  Max: 20

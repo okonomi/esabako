@@ -35,10 +35,6 @@ Layout/IndentationWidth:
   Exclude:
     - 'app/controllers/posts_controller.rb'
 
-# Offense count: 2
-Metrics/AbcSize:
-  Max: 18
-
 # Offense count: 1
 # Configuration parameters: CountComments, ExcludedMethods.
 # ExcludedMethods: refine
