@@ -79,14 +79,6 @@ Rails/Present:
   Exclude:
     - 'bin/bundle'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'app/controllers/pages/tops_controller.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 Style/IfUnlessModifier:
