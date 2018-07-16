@@ -5,6 +5,9 @@ AllCops:
     - 'node_modules/**/*'
     - 'vendor/**/*'
 
+Rails:
+  Enabled: true
+
 Metrics/LineLength:
   Max: 200
 
