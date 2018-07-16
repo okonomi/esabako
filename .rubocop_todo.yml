@@ -20,12 +20,6 @@ Layout/EmptyLines:
   Exclude:
     - 'bin/setup'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/EmptyLinesAroundAccessModifier:
-  Exclude:
-    - 'app/controllers/posts_controller.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

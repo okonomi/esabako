@@ -64,6 +64,7 @@ class PostsController < ApplicationController
   end
 
   private
+
   def set_team
     @team = Team.find(params[:team_name])
   end
