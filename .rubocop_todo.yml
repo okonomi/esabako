@@ -150,31 +150,6 @@ Style/ClassAndModuleChildren:
   Exclude:
     - 'app/controllers/pages/tops_controller.rb'
 
-# Offense count: 19
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/pages/tops_controller.rb'
-    - 'app/controllers/posts_controller.rb'
-    - 'app/controllers/sandboxes_controller.rb'
-    - 'app/controllers/sessions_controller.rb'
-    - 'app/controllers/teams_controller.rb'
-    - 'app/controllers/users/omniauth_callbacks_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/models/application_record.rb'
-    - 'app/models/member.rb'
-    - 'app/models/post.rb'
-    - 'app/models/stat.rb'
-    - 'app/models/team.rb'
-    - 'app/models/user.rb'
-    - 'app/serializers/post_serializer.rb'
-    - 'config/application.rb'
-    - 'db/migrate/20180403232418_create_users.rb'
-    - 'db/migrate/20180405230942_add_column_to_user.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
