@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team
-  before_action :set_post, only: [:show, :edit, :destroy]
+  before_action :set_post, only: %i[show edit destroy]
 
   # GET /posts
   # GET /posts.json

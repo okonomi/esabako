@@ -202,12 +202,3 @@ Style/StderrPuts:
 Style/StringLiteralsInInterpolation:
   Exclude:
     - 'bin/yarn'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, MinSize.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  Exclude:
-    - 'Gemfile'
-    - 'app/controllers/posts_controller.rb'
