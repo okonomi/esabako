@@ -1,4 +1,3 @@
 class Pages::TopsController < ApplicationController
-  def show
-  end
+  def show; end
 end

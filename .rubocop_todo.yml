@@ -133,16 +133,6 @@ Style/ClassAndModuleChildren:
   Exclude:
     - 'app/controllers/pages/tops_controller.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'app/controllers/pages/tops_controller.rb'
-    - 'app/controllers/posts_controller.rb'
-    - 'app/controllers/sandboxes_controller.rb'
-
 # Offense count: 7
 # Cop supports --auto-correct.
 Style/ExpandPathArguments:
