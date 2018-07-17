@@ -19,10 +19,18 @@ before_script:
   - apt-get update -yq
   - apt-get install -y yarn
 
+  - bundle check || bundle install --jobs $(nproc)
+  - yarn install
+
   - mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
   - curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
 
-reviewdog:
+stages:
+  - lint
+
+Reviewdog:
+  stage: lint
+  except:
+    - master
   script:
-    - yarn
     - reviewdog -reporter=gitlab-mr-discussion
