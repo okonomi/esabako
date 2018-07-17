@@ -15,4 +15,4 @@ const configureStore = initialState =>
     applyMiddleware(thunk)
   )
 
- export default configureStore
+export default configureStore
