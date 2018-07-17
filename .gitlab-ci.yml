@@ -10,6 +10,15 @@ variables:
   DISABLE_SPRING: 1
 
 before_script:
+  - curl -sL https://deb.nodesource.com/setup_8.x | bash -
+  - apt-get update -yq
+  - apt-get install -y apt-transport-https build-essential cmake nodejs python-software-properties software-properties-common unzip
+
+  - wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+  - apt-get update -yq
+  - apt-get install -y yarn
+
   - mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
   - curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
 
