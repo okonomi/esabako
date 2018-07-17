@@ -1,3 +1,5 @@
 runner:
   eslint:
     cmd: ./node_modules/.bin/eslint --ext js,jsx app/javascript
+  rubocop:
+    cmd: bundle exec rubocop -P
