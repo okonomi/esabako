@@ -1,10 +1,36 @@
-image: node:8
+image: ruby:2.5.0
+
+cache:
+  paths:
+    - vendor/bundle
+    - node_modules
+
+variables:
+  BUNDLE_PATH: vendor/bundle
+  DISABLE_SPRING: 1
 
 before_script:
+  - curl -sL https://deb.nodesource.com/setup_8.x | bash -
+  - apt-get update -yq
+  - apt-get install -y build-essential nodejs
+
+  - wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+  - apt-get update -yq
+  - apt-get install -y yarn
+
+  - bundle check || bundle install --jobs $(nproc)
+  - yarn install
+
   - mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
   - curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
 
-reviewdog:
+stages:
+  - lint
+
+Reviewdog:
+  stage: lint
+  except:
+    - master
   script:
-    - yarn
     - reviewdog -reporter=gitlab-mr-discussion
