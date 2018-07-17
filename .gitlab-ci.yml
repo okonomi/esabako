@@ -1,6 +1,6 @@
 image: ruby:2.5.0
 
-cashe:
+cache:
   paths:
     - vendor/bundle
     - node_modules
