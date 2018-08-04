@@ -6685,9 +6685,9 @@ reapop-theme-bootstrap@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/reapop-theme-bootstrap/-/reapop-theme-bootstrap-1.0.1.tgz#f7b6c1684684633c24d028d393d4fd318b7245dc"
 
-reapop@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/reapop/-/reapop-1.2.0.tgz#baa3ee52c69a0ac31dd2f9f2e94480678603c08d"
+reapop@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/reapop/-/reapop-2.0.0.tgz#7e49507509950c3eef581a965a5de0d4238f9899"
   dependencies:
     prop-types "^15.6.0"
     react-transition-group "^2.2.1"
