@@ -25,7 +25,7 @@
     "slate": "^0.33.6",
     "slate-edit-list": "^0.11.3",
     "slate-html-serializer": "^0.6.3",
-    "slate-hyperscript": "^0.5.12",
+    "slate-hyperscript": "^0.7.2",
     "slate-react": "^0.12.0",
     "turndown": "^4.0.2"
   },
