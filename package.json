@@ -22,7 +22,7 @@
     "redux": "^3.7.2",
     "redux-actions": "^2.4.0",
     "redux-thunk": "^2.2.0",
-    "slate": "^0.33.6",
+    "slate": "^0.37.2",
     "slate-edit-list": "^0.11.3",
     "slate-html-serializer": "^0.6.3",
     "slate-hyperscript": "^0.5.12",
