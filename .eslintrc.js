@@ -13,6 +13,11 @@ module.exports = {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
+  "settings": {
+    "react": {
+      "version": "16.4"
+    }
+  },
   "rules": {
     "react/prop-types": "warn",
     "react/no-deprecated": "warn",
