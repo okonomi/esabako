@@ -74,9 +74,6 @@ class PostRichTextEditor extends React.Component {
 
   renderNode = props => {
     const { node, attributes, children, editor } = props
-    const isCurrentItem = plugin.utils
-      .getItemsAtRange(editor.value)
-      .contains(node)
 
     switch (node.type) {
       case 'block-quote':
@@ -139,9 +136,11 @@ class PostRichTextEditor extends React.Component {
 
   onSpace = (event, change) => {
     const { value } = change
-    if (value.isExpanded) return
+    const { selection } = value
+    if (selection.isExpanded) return
 
-    const { startBlock, startOffset } = value
+    const { startBlock } = value
+    const startOffset = selection.start.offset
     const chars = startBlock.text.slice(0, startOffset).replace(/\s*/g, '')
     const type = this.getType(chars)
 
@@ -149,13 +148,13 @@ class PostRichTextEditor extends React.Component {
     if (type == 'list-item' && startBlock.type == 'list-item') return
     event.preventDefault()
 
-    change.setBlock(type)
+    change.setBlocks(type)
 
     if (type == 'list-item') {
       change.wrapBlock('bulleted-list')
     }
 
-    change.extendToStartOf(startBlock).delete()
+    change.moveFocusToStartOfNode(startBlock).delete()
     return true
   }
 
@@ -185,8 +184,9 @@ class PostRichTextEditor extends React.Component {
 
   onBackspace = (event, change) => {
     const { value } = change
-    if (value.isExpanded) return
-    if (value.startOffset != 0) return
+    const { selection } = value
+    if (selection.isExpanded) return
+    if (selection.start.offset != 0) return
 
     const { startBlock } = value
     if (startBlock.type == 'paragraph') return
@@ -212,11 +212,12 @@ class PostRichTextEditor extends React.Component {
   onEnter = (event, change) => {
     console.log('onEnter')
     const { value } = change
-    if (value.isExpanded) {
-      return
-    }
+    const { selection } = value
+    if (selection.isExpanded) return
 
-    const { startBlock, startOffset, endOffset } = value
+    const { startBlock } = value
+    const startOffset = selection.start.offset
+    const endOffset = selection.start.offset
     if (startOffset == 0 && startBlock.text.length == 0) {
       return this.onBackspace(event, change)
     }
@@ -240,7 +241,7 @@ class PostRichTextEditor extends React.Component {
     }
 
     event.preventDefault()
-    change.splitBlock().setBlock('paragraph')
+    change.splitBlock().setBlocks('paragraph')
     return true
   }
 }
