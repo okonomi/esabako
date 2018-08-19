@@ -1,18 +1,10 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import ContentEditable from 'react-contenteditable'
 
-const PostEditorTitle = props => {
-  return (
-    <Fragment>
-      <ContentEditable
-        tagName="h1"
-        html={props.title}
-        onChange={props.onChange}
-      />
-    </Fragment>
-  )
-}
+const PostEditorTitle = props => (
+  <ContentEditable html={props.title} onChange={props.onChange} />
+)
 
 PostEditorTitle.propTypes = {
   title: PropTypes.string.isRequired,
