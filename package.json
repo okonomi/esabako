@@ -52,7 +52,8 @@
     "regenerator-runtime": "^0.12.1",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",
-    "webpack-manifest-plugin": "^2.0.3"
+    "webpack-manifest-plugin": "^2.0.3",
+    "webpack-serve": "^2.0.2"
   },
   "scripts": {
     "eslint": "eslint --ext js,jsx app/javascript",
