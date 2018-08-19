@@ -1,14 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
 import Title from 'components/PostEditorTitle'
 import RichTextEditor from 'components/PostRichTextEditor'
 import Serializer from 'components/PostSerializer'
 
+const styles = theme => ({
+  tabContents: {
+    padding: theme.spacing.unit * 2,
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    marginTop: theme.spacing.unit * 3,
+    marginLeft: theme.spacing.unit,
+  },
+})
+
 const serializer = new Serializer()
 
-export default class PostEditor extends Component {
+class PostEditor extends Component {
   state = {
     title: '',
     value: serializer.deserialize(''),
+    currentTab: 'edit',
   }
 
   UNSAFE_componentWillMount() {
@@ -44,76 +64,59 @@ export default class PostEditor extends Component {
     })
   }
 
+  handleTabChange = (event, value) => {
+    this.setState({ currentTab: value })
+  }
+
   handleEditorChange = ({ value }) => {
     this.setState({ value })
   }
 
+  renderTabContents(tab) {
+    switch (tab) {
+      case 'edit':
+        return (
+          <RichTextEditor
+            value={this.state.value}
+            onChange={this.handleEditorChange}
+          />
+        )
+      case 'markdown':
+        return <pre>{serializer.serialize(this.state.value)}</pre>
+      case 'raw':
+        return <pre>{JSON.stringify(this.state.value, undefined, '  ')}</pre>
+    }
+  }
+
   render() {
+    const { classes } = this.props
+
     return (
-      <div className="container-fluid">
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={this.handleSaveClick}
-        >
-          SAVE
-        </button>
-        <Title title={this.state.title} onChange={this.handleTitleChange} />
-        <div className="row">
-          <div className="col">
-            <RichTextEditor
-              value={this.state.value}
-              onChange={this.handleEditorChange}
-            />
-          </div>
-          <div className="col">
-            <ul className="nav nav-tabs">
-              <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  data-toggle="tab"
-                  href="#markdown"
-                  role="tab"
-                  aria-controls="markdown"
-                  aria-selected="true"
-                >
-                  Markdown
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-toggle="tab"
-                  href="#value"
-                  role="tab"
-                  aria-controls="value"
-                  aria-selected="true"
-                >
-                  Value
-                </a>
-              </li>
-            </ul>
-            <div className="tab-content">
-              <div
-                className="tab-pane fade show active"
-                id="markdown"
-                role="tabpanel"
-                aria-labelledby="markdown-tab"
-              >
-                <pre>{serializer.serialize(this.state.value)}</pre>
-              </div>
-              <div
-                className="tab-pane fade show"
-                id="value"
-                role="tabpanel"
-                aria-labelledby="value-tab"
-              >
-                <pre>{JSON.stringify(this.state.value, null, '  ')}</pre>
-              </div>
-            </div>
-          </div>
+      <Fragment>
+        <Typography variant="headline" component="h3">
+          <Title title={this.state.title} onChange={this.handleTitleChange} />
+        </Typography>
+        <Tabs value={this.state.currentTab} onChange={this.handleTabChange}>
+          <Tab value="edit" label="Edit" />
+          <Tab value="markdown" label="Markdown" />
+          <Tab value="raw" label="Raw" />
+        </Tabs>
+        <div className={classes.tabContents}>
+          {this.renderTabContents(this.state.currentTab)}
         </div>
-      </div>
+        <div className={classes.buttons}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleSaveClick}
+            className={classes.button}
+          >
+            SAVE
+          </Button>
+        </div>
+      </Fragment>
     )
   }
 }
+
+export default withStyles(styles)(PostEditor)
