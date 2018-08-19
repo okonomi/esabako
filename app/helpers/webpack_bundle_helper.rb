@@ -3,7 +3,7 @@ module WebpackBundleHelper
 
   def asset_bundle_path(entry, **options)
     raise BundleNotFound, "Could not find bundle with name #{entry}" unless manifest.key? entry
-    asset_path(manifest.fetch(entry), **options)
+    asset_path(bundle_host + manifest.fetch(entry), **options)
   end
 
   def javascript_bundle_tag(entry, **options)
@@ -43,5 +43,9 @@ module WebpackBundleHelper
 
   def manifest
     @manifest ||= JSON.parse(File.read(MANIFEST_PATH))
+  end
+
+  def bundle_host
+    Rails.env.development? ? 'http://localhost:8080' : ''
   end
 end
