@@ -60,7 +60,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Process manager for applications with multiple components (http://github.com/ddollar/foreman)
-  gem 'foreman'
+  gem 'foreman', require: false
   # Add comments to your Gemfile with each dependency's description. (https://github.com/ivantsepp/annotate_gem)
   gem 'annotate_gem'
   # rspec command for spring (https://github.com/jonleighton/spring-commands-rspec)
