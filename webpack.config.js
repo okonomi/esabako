@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
   output: {
@@ -57,6 +58,11 @@ module.exports = {
       // both options are optional
       filename: '[name]-[chunkhash].css',
       chunkFilename: '[name]-[chunkhash].chunk.css',
+    }),
+    new ManifestPlugin({
+      fileName: 'manifest.json',
+      publicPath: '/packs/',
+      writeToFileEmit: true,
     }),
   ],
 }
