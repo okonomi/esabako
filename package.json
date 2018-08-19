@@ -60,8 +60,7 @@
     "eslint": "eslint --ext js,jsx app/javascript",
     "test": "jest",
     "precommit": "lint-staged",
-    "dev": "webpack --progress",
-    "watch": "webpack --progress --watch"
+    "build:dev": "webpack --progress --mode development"
   },
   "lint-staged": {
     "app/javascript/**/*.{js,jsx}": [
