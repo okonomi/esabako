@@ -2,9 +2,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
+  mode: 'development',
   output: {
-    filename: '[name]-[chunkhash].js',
-    chunkFilename: '[name]-[chunkhash].chunk.js',
+    filename: '[name]-[hash].js',
+    chunkFilename: '[name]-[hash].chunk.js',
     path: `${__dirname}/public/packs`,
     publicPath: '/packs/',
     pathinfo: true,
@@ -57,8 +58,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: '[name]-[chunkhash].css',
-      chunkFilename: '[name]-[chunkhash].chunk.css',
+      filename: '[name]-[hash].css',
+      chunkFilename: '[name]-[hash].chunk.css',
     }),
     new ManifestPlugin({
       fileName: 'manifest.json',
