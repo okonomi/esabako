@@ -1,6 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
-import { Value } from 'slate'
 import PluginEditList from 'slate-edit-list'
 
 const plugin = PluginEditList({
@@ -73,7 +73,7 @@ class PostRichTextEditor extends React.Component {
    */
 
   renderNode = props => {
-    const { node, attributes, children, editor } = props
+    const { node, attributes, children } = props
 
     switch (node.type) {
       case 'block-quote':
@@ -162,7 +162,7 @@ class PostRichTextEditor extends React.Component {
     console.log('onTab')
 
     const { value } = change
-    const { startBlock, startOffset } = value
+    const { startBlock } = value
     console.log(startBlock.type)
     if (startBlock.type != 'list-item') {
       return
@@ -246,8 +246,8 @@ class PostRichTextEditor extends React.Component {
   }
 }
 
-/**
- * Export.
- */
+PostRichTextEditor.propTypes = {
+  onChange: PropTypes.func.isRequired,
+}
 
 export default PostRichTextEditor
