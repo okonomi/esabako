@@ -59,7 +59,7 @@ describe('#serialize', () => {
     )
     const output = `
 - あいうえお
-  - かきくけこ
+    - かきくけこ
 `.trim()
     expect(serializer.serialize(input)).toEqual(output)
   })

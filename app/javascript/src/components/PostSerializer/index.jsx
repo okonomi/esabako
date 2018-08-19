@@ -174,7 +174,7 @@ export default class PostSerializer {
         case 'bulleted-list':
           return `${text}\n`
         case 'list-item':
-          return '  '.repeat(depth - 1) + `- ${text}`
+          return '    '.repeat(depth - 1) + `- ${text}`
         default:
           return `${text}`
       }
