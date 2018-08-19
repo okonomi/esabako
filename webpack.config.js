@@ -1,6 +1,8 @@
 import glob from 'glob'
 import path from 'path'
 
+const ManifestPlugin = require('webpack-manifest-plugin')
+
 const packs = path.join(__dirname, 'app', 'javascript’, ‘packs')
 
 const targets = glob.sync(path.join(packs, '**/*.{js,jsx,ts,tsx}'))
@@ -265,6 +267,11 @@ module.exports = {
     ],
   },
   plugins: [
+    new ManifestPlugin({
+      fileName: 'manifest.json',
+      publicPath: '/packs/',
+      writeToFileEmit: true,
+    }),
     {
       keys: [
         'TERM_PROGRAM',
