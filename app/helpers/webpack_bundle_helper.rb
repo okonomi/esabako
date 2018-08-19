@@ -16,9 +16,7 @@ module WebpackBundleHelper
 
     # async と defer を両方指定した場合、ふつうは async が優先されるが、
     # defer しか対応してない古いブラウザの挙動を考えるのが面倒なので、両方指定は防いでおく
-    if options[:async]
-      options.delete(:defer)
-    end
+    options.delete(:defer) if options[:async]
 
     javascript_include_tag '', **options
   end
@@ -35,7 +33,7 @@ module WebpackBundleHelper
 
   # image_bundle_tag の場合は、entry はちゃんと拡張子付きで書いて欲しい
   def image_bundle_tag(entry, **options)
-    raise ArgumentError, "Extname is missing with #{entry}" unless File.extname(entry).present?
+    raise ArgumentError, "Extname is missing with #{entry}" if File.extname(entry).blank?
     image_tag asset_bundle_path(entry), **options
   end
 
