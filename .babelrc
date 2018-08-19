@@ -8,6 +8,7 @@
       "module-resolver", {
         "root": ["./app/javascript/src"]
       }
-    ]
+    ],
+    "@babel/plugin-proposal-class-properties"
   ]
 }
