@@ -6,4 +6,7 @@ module.exports = {
   devMiddleware: {
     publicPath: '/packs/',
   },
+  hotClient: {
+    hmr: false,
+  },
 }
