@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
-import { Value } from 'slate'
 import Title from 'components/PostEditorTitle'
 import RichTextEditor from 'components/PostRichTextEditor'
 import Serializer from 'components/PostSerializer'
 
 const serializer = new Serializer()
 
-export default class Editor extends Component {
+export default class PostEditor extends Component {
   state = {
     title: '',
     value: serializer.deserialize(''),
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (this.props.post.number) {
       this.props.fetchPost(this.props.team.name, this.props.post.number)
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       title: nextProps.post.title,
       value: serializer.deserialize(nextProps.post.body),

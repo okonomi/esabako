@@ -1,7 +1,5 @@
 /** @jsx h */
 import Serializer from 'components/PostSerializer'
-import Plain from 'slate-plain-serializer'
-import { Value } from 'slate'
 import h from 'slate-hyperscript'
 
 describe('#serialize', () => {
@@ -25,7 +23,8 @@ describe('#serialize', () => {
         <value>
           <document>
             <block type="paragraph">
-              あいうえお{'\n'}
+              あいうえお
+              {'\n'}
               かきくけこ
             </block>
           </document>
@@ -39,8 +38,16 @@ describe('#serialize', () => {
       serializer.serialize(
         <value>
           <document>
-            <block type="paragraph">あいうえお{'\n'}かきくけこ</block>
-            <block type="paragraph">アイウエオ{'\n'}カキクケコ</block>
+            <block type="paragraph">
+              あいうえお
+              {'\n'}
+              かきくけこ
+            </block>
+            <block type="paragraph">
+              アイウエオ
+              {'\n'}
+              カキクケコ
+            </block>
           </document>
         </value>
       )
