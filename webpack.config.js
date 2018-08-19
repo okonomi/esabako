@@ -1,3 +1,20 @@
+import glob from 'glob'
+import path from 'path'
+
+const packs = path.join(__dirname, 'app', 'javascript’, ‘packs')
+
+const targets = glob.sync(path.join(packs, '**/*.{js,jsx,ts,tsx}'))
+const entry = targets.reduce((entry, target) => {
+  const bundle = path.relative(packs, target)
+  const ext = path.extname(bundle)
+
+  return Object.assign({}, entry, {
+    // Input: "application.js"
+    // Output: { "application": "./application.js" }
+    [bundle.replace(ext, '')]: './' + bundle,
+  })
+}, {})
+
 module.exports = {
   output: {
     filename: '[name]-[chunkhash].js',
@@ -49,10 +66,7 @@ module.exports = {
       errorDetails: true,
     },
   },
-  entry: {
-    application:
-      '/Users/okonomi/src/github.com/okonomi/esabako/app/javascript/packs/application.jsx',
-  },
+  entry: entry,
   module: {
     strictExportPresence: true,
     rules: [
