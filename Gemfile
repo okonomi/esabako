@@ -71,8 +71,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-# Use webpack to manage app-like JavaScript modules in Rails (https://github.com/rails/webpacker)
-gem 'webpacker'
 # esa API v1 client library, written in Ruby (https://github.com/esaio/esa-ruby/)
 gem 'esa'
 # Autoload dotenv in Rails. (https://github.com/bkeepers/dotenv)
