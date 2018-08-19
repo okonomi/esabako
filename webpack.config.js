@@ -33,6 +33,7 @@ module.exports = {
   entry: {
     application: './app/javascript/packs/application.jsx',
   },
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
