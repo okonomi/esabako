@@ -4473,7 +4473,7 @@ jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
-keycode@^2.1.2, keycode@^2.1.9:
+keycode@^2.1.9:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"
 
@@ -5984,12 +5984,6 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-portal@^3.1.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-3.2.0.tgz#4224e19b2b05d5cbe730a7ba0e34ec7585de0043"
-  dependencies:
-    prop-types "^15.5.8"
-
 react-redux@^5.0.7:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
@@ -6551,9 +6545,9 @@ slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
-slate-base64-serializer@^0.2.53:
-  version "0.2.53"
-  resolved "https://registry.yarnpkg.com/slate-base64-serializer/-/slate-base64-serializer-0.2.53.tgz#5b9448a3af1729776f4cff2e58e56f01c905014d"
+slate-base64-serializer@^0.2.61:
+  version "0.2.61"
+  resolved "https://registry.yarnpkg.com/slate-base64-serializer/-/slate-base64-serializer-0.2.61.tgz#e7e7034aa4181e6911a1449785215fafdfc93278"
   dependencies:
     isomorphic-base64 "^1.0.2"
 
@@ -6566,6 +6560,10 @@ slate-dev-environment@^0.2.0:
 slate-dev-logger@^0.1.43:
   version "0.1.43"
   resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.43.tgz#77f6ca7207fcbf453a5516f3aa8b19794d1d26dc"
+
+slate-dev-warning@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/slate-dev-warning/-/slate-dev-warning-0.0.1.tgz#f6c36731babea5e301b5bd504fe64911dd24200a"
 
 slate-edit-list@^0.12.0:
   version "0.12.0"
@@ -6593,38 +6591,32 @@ slate-hyperscript@^0.8.2:
     is-plain-object "^2.0.4"
     slate-dev-logger "^0.1.43"
 
-slate-plain-serializer@^0.5.34:
-  version "0.5.34"
-  resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.5.34.tgz#93c7e59a283d0a2568e3cab8dd3f3a6740936940"
-  dependencies:
-    slate-dev-logger "^0.1.43"
+slate-plain-serializer@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.6.0.tgz#08b23d7608b44fbbdd723e055932b1de30c6c95b"
 
-slate-prop-types@^0.4.51:
-  version "0.4.51"
-  resolved "https://registry.yarnpkg.com/slate-prop-types/-/slate-prop-types-0.4.51.tgz#2b6f23ea41b37a50ab6049af2668d20f48c75da1"
-  dependencies:
-    slate-dev-logger "^0.1.43"
+slate-prop-types@^0.4.59:
+  version "0.4.59"
+  resolved "https://registry.yarnpkg.com/slate-prop-types/-/slate-prop-types-0.4.59.tgz#1de0d046468a163b5dfc1c2a6591a400db8d9be9"
 
-slate-react@^0.15.9:
-  version "0.15.9"
-  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.15.9.tgz#7a11746fbe5554e5cff020f1c430e266f0d995f5"
+slate-react@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.18.0.tgz#73a81ca5cda7e0320334d9c62739a14b69a291d9"
   dependencies:
     debug "^3.1.0"
     get-window "^1.1.1"
     is-window "^1.0.2"
-    keycode "^2.1.2"
     lodash "^4.1.1"
     memoize-one "^4.0.0"
     prop-types "^15.5.8"
     react-immutable-proptypes "^2.1.0"
-    react-portal "^3.1.0"
     selection-is-backward "^1.0.0"
-    slate-base64-serializer "^0.2.53"
+    slate-base64-serializer "^0.2.61"
     slate-dev-environment "^0.2.0"
-    slate-dev-logger "^0.1.43"
+    slate-dev-warning "^0.0.1"
     slate-hotkeys "^0.2.3"
-    slate-plain-serializer "^0.5.34"
-    slate-prop-types "^0.4.51"
+    slate-plain-serializer "^0.6.0"
+    slate-prop-types "^0.4.59"
 
 slate-schema-violations@^0.1.32:
   version "0.1.32"
