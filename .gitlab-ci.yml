@@ -30,7 +30,7 @@ stages:
 
 Reviewdog:
   stage: lint
-  except:
-    - master
+  only:
+    - merge_requests
   script:
     - reviewdog -reporter=gitlab-mr-discussion
