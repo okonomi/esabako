@@ -15,7 +15,7 @@
     "react": "^16.4.2",
     "react-contenteditable": "^2.1.5",
     "react-dom": "^16.4.2",
-    "react-redux": "^5.0.7",
+    "react-redux": "^5.1.1",
     "reapop": "^2.0.0",
     "reapop-theme-bootstrap": "^1.0.1",
     "redux": "^4.0.0",
