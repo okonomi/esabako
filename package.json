@@ -51,7 +51,7 @@
     "prettier": "1.14.2",
     "regenerator-runtime": "^0.12.1",
     "webpack": "^4.17.1",
-    "webpack-cli": "^3.1.0",
+    "webpack-cli": "^3.3.2",
     "webpack-manifest-plugin": "^2.0.3",
     "webpack-serve": "^2.0.2"
   },
