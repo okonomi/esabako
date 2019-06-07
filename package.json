@@ -23,7 +23,7 @@
     "redux-thunk": "^2.2.0",
     "slate": "^0.37.7",
     "slate-edit-list": "^0.12.0",
-    "slate-html-serializer": "^0.6.25",
+    "slate-html-serializer": "^0.8.6",
     "slate-hyperscript": "^0.8.2",
     "slate-react": "^0.15.9",
     "turndown": "^4.0.2"
